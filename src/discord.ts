@@ -1,4 +1,4 @@
-import { RESTGetAPICurrentUserResult, RESTGetAPIOAuth2CurrentAuthorizationResult, RESTPostOAuth2AccessTokenResult, RESTPostOAuth2RefreshTokenResult, Snowflake } from 'discord-api-types/v10';
+import { RESTGetAPIOAuth2CurrentAuthorizationResult, RESTPostOAuth2AccessTokenResult, RESTPostOAuth2RefreshTokenResult, Snowflake } from 'discord-api-types/v10';
 import { Bindings } from './server';
 import * as storage from './storage';
 

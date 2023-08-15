@@ -219,7 +219,6 @@ router.get('/oauth-callback', async (c) => {
     const data = await discord.getUserData(tokens);
     if (!data || !data.user) return c.text('failed to fetch user data', 500);
 
-    console.log(JSON.stringify(c.env.TOKEN_STORE))
 
     await storage.storeDiscordTokens(data.user.id, {
       access_token: tokens.access_token,
