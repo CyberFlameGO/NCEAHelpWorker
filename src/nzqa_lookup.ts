@@ -1,5 +1,18 @@
 import { CheerioAPI, Cheerio, Element, load, AnyNode } from 'cheerio';
-import { APIEmbed, APIEmbedField, RESTPostAPIWebhookWithTokenJSONBody } from 'discord-api-types/v10';
+import { APIEmbed, APIEmbedField, RESTPostAPIInteractionFollowupJSONBody } from 'discord-api-types/v10';
+
+async function follow_up(body: RESTPostAPIInteractionFollowupJSONBody, applicationId: string, token: string) {
+  await fetch(
+    `https://discord.com/api/v10/webhooks/${applicationId}/${token}`,
+    {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(body),
+    }
+  );
+}
 
 
 export async function lookup(
@@ -18,16 +31,7 @@ export async function lookup(
   if (cachedResponse) {
     console.log('Cache hit');
     // Use cached response if it exists
-    await fetch(
-      `https://discord.com/api/v10/webhooks/${applicationId}/${token}`,
-      {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: cachedResponse.body,
-      }
-    );
+    await follow_up(await cachedResponse.json() as RESTPostAPIInteractionFollowupJSONBody, applicationId, token)
     return;
   }
 
@@ -37,6 +41,13 @@ export async function lookup(
       cacheEverything: true,
     },
   });
+  if (!response.ok) {
+    const followupData: RESTPostAPIInteractionFollowupJSONBody = {
+      content: `An error occurred! Response code: ${response.status}\nIf this repetitively occurs and NZQA is not having an outage, message \`cyberflameu\`.`,
+    }
+    await follow_up(followupData, applicationId, token)
+    return;
+  }
   const data: string = await response.text();
   const $: CheerioAPI = load(data); // perhaps look at moving off cheerio to htmlrewriter
 
@@ -149,22 +160,13 @@ export async function lookup(
       // { name: 'Answers to Paper', value: answersUrl }
     }
 
-    const followupData: RESTPostAPIWebhookWithTokenJSONBody = {
+    const followupData: RESTPostAPIInteractionFollowupJSONBody = {
       embeds: [embedJson],
     };
 
     // perhaps look at using the discord-api-methods interactionskit package for these if i end up needing to use them for something else
 
-    await fetch(
-      `https://discord.com/api/v10/webhooks/${applicationId}/${token}`,
-      {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(followupData),
-      }
-    );
+    await follow_up(followupData, applicationId, token)
 
     const cacheResponse: Response = new Response(JSON.stringify(followupData), {
       headers: {
@@ -174,19 +176,11 @@ export async function lookup(
     });
     await cache.put(cacheKey, cacheResponse);
   } catch (error) {
-    await fetch(
-      `https://discord.com/api/v10/webhooks/${applicationId}/${token}`,
-      {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          content:
-            'Please enter a valid standard! (</lookup:1137896912020840599>)',
-        }),
-      }
-    );
+    const followupData: RESTPostAPIInteractionFollowupJSONBody = {
+      content:
+        'Please enter a valid standard! (</lookup:1137896912020840599>)\nIf you believe this is a mistake, message `cyberflameu`.',
+    }
+    await follow_up(followupData, applicationId, token)
   }
   return;
 }
