@@ -1,7 +1,11 @@
-import { RESTGetAPIOAuth2CurrentAuthorizationResult, RESTPostOAuth2AccessTokenResult, RESTPostOAuth2RefreshTokenResult, Snowflake } from 'discord-api-types/v10';
+import {
+  RESTGetAPIOAuth2CurrentAuthorizationResult,
+  RESTPostOAuth2AccessTokenResult,
+  RESTPostOAuth2RefreshTokenResult,
+  Snowflake,
+} from 'discord-api-types/v10';
 import { Bindings } from './server';
 import * as storage from './storage';
-
 
 export function getOAuthUrl(env: any) {
   const state = crypto.randomUUID();
@@ -11,7 +15,10 @@ export function getOAuthUrl(env: any) {
   url.searchParams.set('redirect_uri', env.WORKER_URL + '/oauth-callback');
   url.searchParams.set('response_type', 'code');
   url.searchParams.set('state', state);
-  url.searchParams.set('scope', 'role_connections.write identify guilds connections guilds.members.read email guilds.join');
+  url.searchParams.set(
+    'scope',
+    'role_connections.write identify guilds connections guilds.members.read email guilds.join'
+  );
   url.searchParams.set('prompt', 'consent');
 
   return {
@@ -52,7 +59,11 @@ export async function getOAuthTokens(code: string | undefined, env: Bindings) {
   }
 }
 
-export async function getAccessToken(userId: Snowflake, tokens: storage.Tokens, env: Bindings) {
+export async function getAccessToken(
+  userId: Snowflake,
+  tokens: storage.Tokens,
+  env: Bindings
+) {
   if (Date.now() > tokens.expires_in) {
     const url = 'https://discord.com/api/v10/oauth2/token';
 
@@ -98,7 +109,8 @@ export async function getUserData(tokens: RESTPostOAuth2AccessTokenResult) {
   });
 
   if (response.ok) {
-    const data: RESTGetAPIOAuth2CurrentAuthorizationResult = await response.json();
+    const data: RESTGetAPIOAuth2CurrentAuthorizationResult =
+      await response.json();
 
     return data;
   } else {
@@ -107,7 +119,11 @@ export async function getUserData(tokens: RESTPostOAuth2AccessTokenResult) {
   }
 }
 
-export async function getMetadata(userId: Snowflake, tokens: any, env: Bindings) {
+export async function getMetadata(
+  userId: Snowflake,
+  tokens: any,
+  env: Bindings
+) {
   const url = `https://discord.com/api/v10/users/@me/applications/${env.DISCORD_APPLICATION_ID}/role-connection`;
 
   const accessToken = await getAccessToken(userId, tokens, env);
@@ -130,7 +146,12 @@ export async function getMetadata(userId: Snowflake, tokens: any, env: Bindings)
   }
 }
 
-export async function pushMetadata(userId: Snowflake, tokens: storage.Tokens, body: Object, env: Bindings) {
+export async function pushMetadata(
+  userId: Snowflake,
+  tokens: storage.Tokens,
+  body: Object,
+  env: Bindings
+) {
   const url = `https://discord.com/api/v10/users/@me/applications/${env.DISCORD_APPLICATION_ID}/role-connection`;
 
   const accessToken = await getAccessToken(userId, tokens, env);

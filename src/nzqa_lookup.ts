@@ -1,7 +1,15 @@
 import { CheerioAPI, Cheerio, Element, load, AnyNode } from 'cheerio';
-import { APIEmbed, APIEmbedField, RESTPostAPIInteractionFollowupJSONBody } from 'discord-api-types/v10';
+import {
+  APIEmbed,
+  APIEmbedField,
+  RESTPostAPIInteractionFollowupJSONBody,
+} from 'discord-api-types/v10';
 
-async function follow_up(body: RESTPostAPIInteractionFollowupJSONBody, applicationId: string, token: string) {
+async function follow_up(
+  body: RESTPostAPIInteractionFollowupJSONBody,
+  applicationId: string,
+  token: string
+) {
   await fetch(
     `https://discord.com/api/v10/webhooks/${applicationId}/${token}`,
     {
@@ -14,7 +22,6 @@ async function follow_up(body: RESTPostAPIInteractionFollowupJSONBody, applicati
   );
 }
 
-
 export async function lookup(
   input: number,
   applicationId: string,
@@ -23,7 +30,6 @@ export async function lookup(
   var standard: number = input;
   const standardUri: string = `https://www.nzqa.govt.nz/ncea/assessment/view-detailed.do?standardNumber=${standard}`;
 
-
   const cacheKey: string = new URL(standardUri).toString(); // Use a valid URL for cacheKey
   const cache: Cache = caches.default;
   const cachedResponse: Response | undefined = await cache.match(cacheKey);
@@ -31,7 +37,11 @@ export async function lookup(
   if (cachedResponse) {
     console.log('Cache hit');
     // Use cached response if it exists
-    await follow_up(await cachedResponse.json() as RESTPostAPIInteractionFollowupJSONBody, applicationId, token)
+    await follow_up(
+      (await cachedResponse.json()) as RESTPostAPIInteractionFollowupJSONBody,
+      applicationId,
+      token
+    );
     return;
   }
 
@@ -44,8 +54,8 @@ export async function lookup(
   if (!response.ok) {
     const followupData: RESTPostAPIInteractionFollowupJSONBody = {
       content: `An error occurred! Response code: ${response.status}\nIf this repetitively occurs and NZQA is not having an outage, message \`cyberflameu\`.`,
-    }
-    await follow_up(followupData, applicationId, token)
+    };
+    await follow_up(followupData, applicationId, token);
     return;
   }
   const data: string = await response.text();
@@ -166,12 +176,13 @@ export async function lookup(
 
     // perhaps look at using the discord-api-methods interactionskit package for these if i end up needing to use them for something else
 
-    await follow_up(followupData, applicationId, token)
+    await follow_up(followupData, applicationId, token);
 
     const cacheResponse: Response = new Response(JSON.stringify(followupData), {
       headers: {
         'content-type': 'application/json',
-        'Cache-Control': 'public, max-age=7200, stale-while-revalidate=7200, stale-if-error=86400',
+        'Cache-Control':
+          'public, max-age=7200, stale-while-revalidate=7200, stale-if-error=86400',
       },
     });
     await cache.put(cacheKey, cacheResponse);
@@ -179,8 +190,8 @@ export async function lookup(
     const followupData: RESTPostAPIInteractionFollowupJSONBody = {
       content:
         'Please enter a valid standard! (</lookup:1137896912020840599>)\nIf you believe this is a mistake, message `cyberflameu`.',
-    }
-    await follow_up(followupData, applicationId, token)
+    };
+    await follow_up(followupData, applicationId, token);
   }
   return;
 }

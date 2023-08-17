@@ -16,43 +16,16 @@ import * as storage from './storage.js';
 import * as discord from './discord.js';
 
 export type Bindings = {
-	DISCORD_PUBLIC_KEY: string
-  DISCORD_APPLICATION_ID: string
-  DISCORD_CLIENT_SECRET: string
-	TOKEN: string
-  WORKER_URL: string
-  COOKIE_SECRET: string
-  TOKEN_STORE: KVNamespace
-}
+  DISCORD_PUBLIC_KEY: string;
+  DISCORD_APPLICATION_ID: string;
+  DISCORD_CLIENT_SECRET: string;
+  TOKEN: string;
+  WORKER_URL: string;
+  COOKIE_SECRET: string;
+  TOKEN_STORE: KVNamespace;
+};
 
 const router = new Hono<{ Bindings: Bindings }>();
-
-async function updateMetadata(userId: discordJs.Snowflake, env: Bindings) {
-  // Fetch the Discord tokens from storage
-  const tokens = await storage.getDiscordTokens(userId, env.TOKEN_STORE) as storage.Tokens;
-    
-  let metadata = {};
-  try {
-    // Fetch the new metadata you want to use from an external source. 
-    // This data could be POST-ed to this endpoint, but every service
-    // is going to be different.  To keep the example simple, we'll
-    // just generate some random data. 
-    metadata = {
-      cookieseaten: 1483,
-      allergictonuts: 0, // 0 for false, 1 for true
-      firstcookiebaked: '2003-12-20',
-    };
-  } catch (e) {
-    console.error(e);
-    // If fetching the profile data for the external service fails for any reason,
-    // ensure metadata on the Discord side is nulled out. This prevents cases
-    // where the user revokes an external app permissions, and is left with
-    // stale linked role data.
-  }
-
-  // Push the data to Discord.
-  await discord.pushMetadata(userId, tokens, metadata, env);
-}
 
 /**
  * A simple :wave: hello page to verify the worker is working.
@@ -75,9 +48,13 @@ router.post('/interactions', async (c) => {
   //   console.error('Invalid Request');
   //   return c.text('Bad request signature.', 401);
   // }
-  const isValid: boolean | void = await isValidRequest(c.req.raw, c.env.DISCORD_PUBLIC_KEY).catch(console.error)
-  if (!isValid) return new Response('Invalid request', { status: 401 })
-  const interaction: discordJs.APIInteraction = await c.req.json() as discordJs.APIInteraction;
+  const isValid: boolean | void = await isValidRequest(
+    c.req.raw,
+    c.env.DISCORD_PUBLIC_KEY
+  ).catch(console.error);
+  if (!isValid) return new Response('Invalid request', { status: 401 });
+  const interaction: discordJs.APIInteraction =
+    (await c.req.json()) as discordJs.APIInteraction;
 
   switch (interaction.type) {
     case discordJs.InteractionType.Ping: {
@@ -101,7 +78,10 @@ router.post('/interactions', async (c) => {
       switch (interaction.data.name.toLowerCase()) {
         // Revive ping command - checks if a user has a role and pings a role if they do
         case commands.REVIVE_COMMAND.name.toLowerCase(): {
-          if (interaction.member && interaction.member.roles.includes('909724765026148402')) {
+          if (
+            interaction.member &&
+            interaction.member.roles.includes('909724765026148402')
+          ) {
             console.log('handling revive request');
             return c.json({
               type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
@@ -150,28 +130,33 @@ router.post('/interactions', async (c) => {
             },
           });
         }
-case commands.LOOKUP_COMMAND.name.toLowerCase(): {
-  if (interaction.data && 'options' in interaction.data && interaction.data.options) {
-    const standardNumber = interaction.data.options[0] as discordJs.APIApplicationCommandInteractionDataNumberOption;
-    c.executionCtx.waitUntil(
-      lookup(
-        standardNumber.value,
-        interaction.application_id,
-        interaction.token
-      )
-    );
-    return c.json({
-      type: InteractionResponseType.DEFERRED_CHANNEL_MESSAGE_WITH_SOURCE,
-    });
-  } else {
-    return c.json({
-      type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
-      data: {
-        content: "I'm sorry, I don't recognize that command.",
-      },
-    });
-  }
-}
+        case commands.LOOKUP_COMMAND.name.toLowerCase(): {
+          if (
+            interaction.data &&
+            'options' in interaction.data &&
+            interaction.data.options
+          ) {
+            const standardNumber = interaction.data
+              .options[0] as discordJs.APIApplicationCommandInteractionDataNumberOption;
+            c.executionCtx.waitUntil(
+              lookup(
+                standardNumber.value,
+                interaction.application_id,
+                interaction.token
+              )
+            );
+            return c.json({
+              type: InteractionResponseType.DEFERRED_CHANNEL_MESSAGE_WITH_SOURCE,
+            });
+          } else {
+            return c.json({
+              type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
+              data: {
+                content: "I'm sorry, I don't recognize that command.",
+              },
+            });
+          }
+        }
 
         // Ping command - for checking latency of the bot, returned as a non-ephemeral message
         case commands.PING_COMMAND.name.toLowerCase(): {
@@ -205,12 +190,44 @@ router.get('/linked-roles', async (c) => {
   return c.redirect(url);
 });
 
+async function updateMetadata(userId: discordJs.Snowflake, env: Bindings) {
+  // Fetch the Discord tokens from storage
+  const tokens = (await storage.getDiscordTokens(
+    userId,
+    env.TOKEN_STORE
+  )) as storage.Tokens;
+
+  let metadata = {};
+  try {
+    // Fetch the new metadata you want to use from an external source.
+    // This data could be POST-ed to this endpoint, but every service
+    // is going to be different.  To keep the example simple, we'll
+    // just generate some random data.
+    metadata = {
+      cookieseaten: 1483,
+      allergictonuts: 0, // 0 for false, 1 for true
+      firstcookiebaked: '2003-12-20',
+    };
+  } catch (e) {
+    console.error(e);
+    // If fetching the profile data for the external service fails for any reason,
+    // ensure metadata on the Discord side is nulled out. This prevents cases
+    // where the user revokes an external app permissions, and is left with
+    // stale linked role data.
+  }
+
+  // Push the data to Discord.
+  await discord.pushMetadata(userId, tokens, metadata, env);
+}
+
 router.get('/oauth-callback', async (c) => {
   try {
     const code = c.req.query('code');
     const state = c.req.query('state');
 
-    if (await getSignedCookie(c, c.env.COOKIE_SECRET, 'client_state') !== state)
+    if (
+      (await getSignedCookie(c, c.env.COOKIE_SECRET, 'client_state')) !== state
+    )
       return c.text('state verification failed', 403);
 
     const tokens = await discord.getOAuthTokens(code, c.env);
@@ -219,12 +236,15 @@ router.get('/oauth-callback', async (c) => {
     const data = await discord.getUserData(tokens);
     if (!data || !data.user) return c.text('failed to fetch user data', 500);
 
-
-    await storage.storeDiscordTokens(data.user.id, {
-      access_token: tokens.access_token,
-      refresh_token: tokens.refresh_token,
-      expires_in: Date.now() + tokens.expires_in * 1000,
-    }, c.env.TOKEN_STORE);
+    await storage.storeDiscordTokens(
+      data.user.id,
+      {
+        access_token: tokens.access_token,
+        refresh_token: tokens.refresh_token,
+        expires_in: Date.now() + tokens.expires_in * 1000,
+      },
+      c.env.TOKEN_STORE
+    );
 
     await updateMetadata(data.user.id, c.env);
 
