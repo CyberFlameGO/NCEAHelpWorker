@@ -12,8 +12,8 @@ dependencies:
     specifier: 1.0.0-rc.12
     version: 1.0.0-rc.12
   discord-api-types:
-    specifier: ^0.37.53
-    version: 0.37.53
+    specifier: ^0.37.54
+    version: 0.37.54
   discord-interactions:
     specifier: ^3.4.0
     version: 3.4.0
@@ -949,7 +949,7 @@ packages:
     dev: true
 
   /concat-map@0.0.1:
-    resolution: {integrity: sha1-2Klr13/Wjfd5OnMDajug1UBdR3s=}
+    resolution: {integrity: sha512-/Srv4dswyQNBfohGpz9o6Yb3Gz3SrUDqBH5rTuhGR7ahtlbYKnVxw2bCFMRljaA7EXHaXZ8wsHdodFvbkhKmqg==}
     dev: true
 
   /convert-source-map@1.9.0:
@@ -1073,8 +1073,8 @@ packages:
     engines: {node: '>=0.3.1'}
     dev: true
 
-  /discord-api-types@0.37.53:
-    resolution: {integrity: sha512-N6uUgv50OyP981Mfxrrt0uxcqiaNr0BDaQIoqfk+3zM2JpZtwU9v7ce1uaFAP53b2xSDvcbrk80Kneui6XJgGg==}
+  /discord-api-types@0.37.54:
+    resolution: {integrity: sha512-xNO6yzEMfpVSVUa6lOOzgLDy3Gyd8yuBAozGQdjpW9VjRq2Ccboz4FhTrd5v4Hw7pbkCKwnHvddjIYrX0INkUQ==}
     dev: false
 
   /discord-interactions@3.4.0:
@@ -2053,8 +2053,8 @@ packages:
       path-to-regexp: 1.8.0
     dev: true
 
-  /node-abi@3.46.0:
-    resolution: {integrity: sha512-LXvP3AqTIrtvH/jllXjkNVbYifpRbt9ThTtymSMSuHmhugQLAWr99QQFTm+ZRht9ziUvdGOgB+esme1C6iE6Lg==}
+  /node-abi@3.47.0:
+    resolution: {integrity: sha512-2s6B2CWZM//kPgwnuI0KrYwNjfdByE25zvAaEpq9IH4zcNsarH8Ihu/UuX6XMPEogDAxkuUFeZn60pXNHAqn3A==}
     engines: {node: '>=10'}
     dependencies:
       semver: 7.5.4
@@ -2240,7 +2240,7 @@ packages:
       minimist: 1.2.8
       mkdirp-classic: 0.5.3
       napi-build-utils: 1.0.2
-      node-abi: 3.46.0
+      node-abi: 3.47.0
       pump: 3.0.0
       rc: 1.2.8
       simple-get: 4.0.1
