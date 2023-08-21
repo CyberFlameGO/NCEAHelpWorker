@@ -25,7 +25,7 @@
     "discord-api-types": "^0.37.54",
     "discord-interactions": "^3.4.0",
     "discord-verify": "^1.2.0",
-    "hono": "^3.4.3"
+    "hono": "^3.5.0"
   },
   "devDependencies": {
     "@cloudflare/workers-types": "^4.20230814.0",
