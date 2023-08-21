@@ -1,6 +1,7 @@
 import * as commands from './commands.js';
 import dotenv from 'dotenv';
 import process from 'node:process';
+import { ApplicationRoleConnectionMetadataType } from 'discord-api-types/v10'
 
 /**
  * This file is meant to be run from the command line, and is not used by the
@@ -63,19 +64,19 @@ const metadata = [
     key: 'cookieseaten',
     name: 'Cookies Eaten',
     description: 'Cookies Eaten Greater Than',
-    type: 2,
+    type: ApplicationRoleConnectionMetadataType.IntegerGreaterThanOrEqual,
   },
   {
     key: 'allergictonuts',
     name: 'Allergic To Nuts',
     description: 'Is Allergic To Nuts',
-    type: 7,
+    type: ApplicationRoleConnectionMetadataType.BooleanEqual,
   },
   {
     key: 'bakingsince',
     name: 'Baking Since',
     description: 'Days since baking their first cookie',
-    type: 6,
+    type: ApplicationRoleConnectionMetadataType.DatetimeGreaterThanOrEqual,
   },
 ];
 
@@ -89,6 +90,6 @@ const cmds = [
 const commandEndpoint = `https://discord.com/api/v10/applications/${applicationId}/commands`;
 const metadataEndpoint = `https://discord.com/api/v10/applications/${applicationId}/role-connections/metadata`;
 
-register(commandEndpoint, cmds)
-register(metadataEndpoint, metadata)
+await register(commandEndpoint, cmds)
+await register(metadataEndpoint, metadata)
 

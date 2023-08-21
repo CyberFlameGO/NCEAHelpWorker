@@ -21,13 +21,13 @@ dependencies:
     specifier: ^1.2.0
     version: 1.2.0
   hono:
-    specifier: ^3.4.3
-    version: 3.4.3
+    specifier: ^3.5.0
+    version: 3.5.0
 
 devDependencies:
   '@cloudflare/workers-types':
-    specifier: ^4.20230814.0
-    version: 4.20230814.0
+    specifier: ^4.20230821.0
+    version: 4.20230821.0
   c8:
     specifier: ^8.0.1
     version: 8.0.1
@@ -130,8 +130,8 @@ packages:
     dev: true
     optional: true
 
-  /@cloudflare/workers-types@4.20230814.0:
-    resolution: {integrity: sha512-+jHiGjZg2UpULZSSHmHLqUG45TLg1s+uppSMlGvMn0u/xyFsRX9HX6b8Ydg/oHSp3jfSuPtX05GSvtgRAmrWTg==}
+  /@cloudflare/workers-types@4.20230821.0:
+    resolution: {integrity: sha512-lVQSyr5E4CEkQw7WIdsrMTj+kHjsm28mJ0B5AhNFByKR+16KTFsU/RW/nGLKHHW2jxT5lvYI+HjNQMzC9QR8Ng==}
     dev: true
 
   /@esbuild-plugins/node-globals-polyfill@0.1.1(esbuild@0.16.3):
@@ -907,7 +907,7 @@ packages:
       normalize-path: 3.0.0
       readdirp: 3.6.0
     optionalDependencies:
-      fsevents: 2.3.2
+      fsevents: 2.3.3
     dev: true
 
   /chownr@1.1.4:
@@ -1463,8 +1463,8 @@ packages:
     resolution: {integrity: sha512-OO0pH2lK6a0hZnAdau5ItzHPI6pUlvI7jMVnxUQRtw4owF2wk8lOSabtGDCTP4Ggrg2MbGnWO9X8K1t4+fGMDw==}
     dev: true
 
-  /fsevents@2.3.2:
-    resolution: {integrity: sha512-xiqMQR4xAeHTuB9uWm+fFRcIOgKBMiOBP+eXiyT7jsgVCq1bkVygt00oASowB7EdtpOHaaPgKt812P9ab+DDKA==}
+  /fsevents@2.3.3:
+    resolution: {integrity: sha512-5xoDfX+fL7faATnagmWPpbFtwh/R77WmMMqqHGS65C3vvB0YHrgF+B1YmZ3441tMj5n63k0212XNoJwzlhffQw==}
     engines: {node: ^8.16.0 || ^10.6.0 || >=11.0.0}
     os: [darwin]
     requiresBuild: true
@@ -1581,8 +1581,8 @@ packages:
     hasBin: true
     dev: true
 
-  /hono@3.4.3:
-    resolution: {integrity: sha512-HbVxZh9yC3hV25+mFjUaM65t7g8ia2mXbhAGmVHA0r8+guizTJq1Cg4f2SmB5+JrviG0vaqOnWJ9U3O05aikbA==}
+  /hono@3.5.0:
+    resolution: {integrity: sha512-0eJT6F+TRovENdANDubzri3c1oVEjbTgrQvXrcUKjFV6ZElNWNSrrHZIQE5CPwRTddsUdPjkgguuLYw90npC+w==}
     engines: {node: '>=16.0.0'}
     dev: false
 
@@ -2721,7 +2721,7 @@ packages:
       source-map: 0.7.4
       xxhash-wasm: 1.0.2
     optionalDependencies:
-      fsevents: 2.3.2
+      fsevents: 2.3.3
     transitivePeerDependencies:
       - bufferutil
       - supports-color
