@@ -138,11 +138,14 @@ router.post('/interactions', async (c) => {
           ) {
             const standardNumber = interaction.data
               .options[0] as discordJs.APIApplicationCommandInteractionDataNumberOption;
+              const paperYear: discordJs.APIApplicationCommandInteractionDataNumberOption | undefined = interaction.data
+                .options[1] as discordJs.APIApplicationCommandInteractionDataNumberOption;
             c.executionCtx.waitUntil(
               lookup(
-                standardNumber.value,
                 interaction.application_id,
-                interaction.token
+                interaction.token,
+                standardNumber.value,
+                paperYear?.value
               )
             );
             return c.json({

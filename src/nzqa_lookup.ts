@@ -23,12 +23,31 @@ async function follow_up(
 }
 
 export async function lookup(
-  input: number,
   applicationId: string,
-  token: string
+  token: string,
+  standardNumber: number,
+  paperYear?: number
 ): Promise<void> {
-  var standard: number = input;
-  const standardUri: string = `https://www.nzqa.govt.nz/ncea/assessment/view-detailed.do?standardNumber=${standard}`;
+  const standardUri: string = `https://www.nzqa.govt.nz/ncea/assessment/view-detailed.do?standardNumber=${standardNumber}`;
+
+  // EXTERNAL DATE LOGIC BEGIN
+  const currentYear = new Date().getFullYear();
+  let year: number = currentYear - 2;
+  var yearDefault = true;
+  if (paperYear != null && paperYear >= 2011 && paperYear <= currentYear) {
+    year = paperYear;
+    yearDefault = false;
+  }
+  const examPaperData: string = `[AS${standardNumber}'s exam paper (${year}, PDF)](https://www.nzqa.govt.nz/nqfdocs/ncea-resource/exams/${year}/${standardNumber}-exm-${year}.pdf)`;
+  // const answersUrl = `https://www.nzqa.govt.nz/nqfdocs/ncea-resource/exams/${year}/${standard}-ass-${year}.pdf`;
+  // todo: potentially add resource booklets, and for all of these URLs run fetch and see if it returns 404 or the pdf
+  let examPaperFieldName;
+  if (yearDefault)
+    examPaperFieldName = `Examination Paper (defaulting to resources for ${year} as unspecified/invalid)`;
+  else
+    examPaperFieldName = `Examination Paper (resources for year ${year})`;
+
+  // EXTERNAL DATE LOGIC END
 
   const cacheKey: string = new URL(standardUri).toString(); // Use a valid URL for cacheKey
   const cache: Cache = caches.default;
@@ -36,9 +55,18 @@ export async function lookup(
 
   if (cachedResponse) {
     console.log('Cache hit');
+    const cachedJson = (await cachedResponse.json()) as RESTPostAPIInteractionFollowupJSONBody;
+
+    // Allows for flexibility regarding external paper year
+    const cachedEmbedFields = cachedJson.embeds![0].fields!
+    const examPaperIndex = cachedEmbedFields.findIndex(predicate => predicate.name.includes('Examination Paper'));
+    if (examPaperIndex !== -1) {
+      cachedEmbedFields[examPaperIndex].name = examPaperFieldName;
+      cachedEmbedFields[examPaperIndex].value = examPaperData;
+    }
     // Use cached response if it exists
     await follow_up(
-      (await cachedResponse.json()) as RESTPostAPIInteractionFollowupJSONBody,
+      cachedJson,
       applicationId,
       token
     );
@@ -104,7 +132,7 @@ export async function lookup(
   try {
     const embedJson: APIEmbed = {
       color: 0x0099ff,
-      title: `Standard ${standard}`,
+      title: `Standard ${standardNumber}`,
       description: `[${standardName}](${standardUri})`,
       fields: [
         { name: 'Level', value: level, inline: true },
@@ -130,7 +158,7 @@ export async function lookup(
         if (asYear != undefined && isNum) {
           embedJson.fields!.push({
             name: 'Achievement Standard',
-            value: `[AS${standard} (${asYear}, PDF)](https://www.nzqa.govt.nz/nqfdocs/ncea-resource/achievements/${asYear}/as${standard}.pdf)`,
+            value: `[AS${standardNumber} (${asYear}, PDF)](https://www.nzqa.govt.nz/nqfdocs/ncea-resource/achievements/${asYear}/as${standardNumber}.pdf)`,
             inline: false,
           });
         } else {
@@ -143,7 +171,7 @@ export async function lookup(
       } else if (standardFile.includes('Unit')) {
         embedJson.fields!.push({
           name: 'Unit Standard',
-          value: `[US${standard} (PDF)](https://www.nzqa.govt.nz/nqfdocs/units/pdf/${standard}.pdf)`,
+          value: `[US${standardNumber} (PDF)](https://www.nzqa.govt.nz/nqfdocs/units/pdf/${standardNumber}.pdf)`,
           inline: false,
         });
       } else {
@@ -156,14 +184,9 @@ export async function lookup(
     }
 
     if (assessment === 'External') {
-      const year: number = new Date().getFullYear() - 2;
-      console.log(year);
-      const examPaperUrl: string = `[AS${standard}'s exam paper for ${year} (PDF)](https://www.nzqa.govt.nz/nqfdocs/ncea-resource/exams/${year}/${standard}-exm-${year}.pdf)`;
-      // const answersUrl = `https://www.nzqa.govt.nz/nqfdocs/ncea-resource/exams/${year}/${standard}-ass-${year}.pdf`;
-      // todo: potentially add resource booklets, and for all of these URLs run fetch and see if it returns 404 or the pdf
       embedJson.fields!.push({
-        name: 'Examination Paper',
-        value: examPaperUrl,
+        name: examPaperFieldName,
+        value: examPaperData,
         inline: false,
       });
 
