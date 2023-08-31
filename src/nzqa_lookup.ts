@@ -31,10 +31,11 @@ export async function lookup(
   const standardUri: string = `https://www.nzqa.govt.nz/ncea/assessment/view-detailed.do?standardNumber=${standardNumber}`;
 
   // EXTERNAL DATE LOGIC BEGIN
-  const currentYear = new Date().getFullYear();
+  const currentYear: number = new Date().getFullYear();
   let year: number = currentYear - 2;
   var yearDefault = true;
-  if (paperYear != null && paperYear >= 2011 && paperYear <= currentYear) {
+
+  if (paperYear && paperYear >= 2011 && paperYear <= currentYear) {
     year = paperYear;
     yearDefault = false;
   }
@@ -58,7 +59,7 @@ export async function lookup(
     const cachedJson = (await cachedResponse.json()) as RESTPostAPIInteractionFollowupJSONBody;
 
     // Allows for flexibility regarding external paper year
-    const cachedEmbedFields = cachedJson.embeds![0].fields!
+    const cachedEmbedFields = cachedJson.embeds![0].fields!;
     const examPaperIndex = cachedEmbedFields.findIndex(predicate => predicate.name.includes('Examination Paper'));
     if (examPaperIndex !== -1) {
       cachedEmbedFields[examPaperIndex].name = examPaperFieldName;
