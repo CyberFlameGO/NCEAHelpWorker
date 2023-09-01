@@ -12,8 +12,8 @@ dependencies:
     specifier: 1.0.0-rc.12
     version: 1.0.0-rc.12
   discord-api-types:
-    specifier: ^0.37.55
-    version: 0.37.55
+    specifier: ^0.37.56
+    version: 0.37.56
   discord-interactions:
     specifier: ^3.4.0
     version: 3.4.0
@@ -53,8 +53,8 @@ devDependencies:
     specifier: 5.0.0-beta.2
     version: 5.0.0-beta.2
   pnpm:
-    specifier: ^8.7.0
-    version: 8.7.0
+    specifier: ^8.7.1
+    version: 8.7.1
   prettier:
     specifier: ^3.0.3
     version: 3.0.3
@@ -1073,8 +1073,8 @@ packages:
     engines: {node: '>=0.3.1'}
     dev: true
 
-  /discord-api-types@0.37.55:
-    resolution: {integrity: sha512-XIf8AELxg76AH1WzrgB5ziFyIxSs4tLK1XGjFs4oE6t7M7r1B0Chdylaz76ALhvRXAUBGHGFXu/pKAa5Q+LbQg==}
+  /discord-api-types@0.37.56:
+    resolution: {integrity: sha512-Ih3wj0ZTaQxaJRqUEXHMIXfXB86bwMGC0wc2nNsyCJqeo3lC4qnxXtFIsC+IGI46+dSIinuayCAZ6sLEEM02Bw==}
     dev: false
 
   /discord-interactions@3.4.0:
@@ -2224,8 +2224,8 @@ packages:
     engines: {node: '>=8.6'}
     dev: true
 
-  /pnpm@8.7.0:
-    resolution: {integrity: sha512-HWH4wQ6KWl2/vd6g8fXvt9vVF3IjBzrslTzyMKpGQWiEuUJ6ZCHbp48orQ+T++3ji6VwgyN7NQJD3mseOoznHQ==}
+  /pnpm@8.7.1:
+    resolution: {integrity: sha512-Qbt3EhYUaXFS2k4FLQA7r2/eYz/JoDeG680/3UXG0Ga03LPuY4GgdvCLe+zO3M7ZnWG4VI4bAwk7QpJyfr5eqA==}
     engines: {node: '>=16.14'}
     hasBin: true
     dev: true
