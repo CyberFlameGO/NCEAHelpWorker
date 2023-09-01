@@ -143,7 +143,7 @@ export async function lookup(
           value: assessment.replace(' ', ''),
           inline: false,
         },
-      ] as APIEmbedField[],
+      ],
       footer: {
         text: applicationId,
         icon_url: `https://cdn.discordapp.com/avatars/${applicationId}/c8ee73d8401a7a112512ea81a87c4cbd.png`,
@@ -154,7 +154,7 @@ export async function lookup(
     if (Array.isArray(standardFile)) {
       if (standardFile.includes('Achievement')) {
         const asYear: string = standardFile[2];
-        let isNum: boolean = /^\d+$/.test(asYear);
+        const isNum: boolean = /^\d+$/.test(asYear);
 
         if (asYear != undefined && isNum) {
           embedJson.fields!.push({
