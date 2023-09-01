@@ -33,7 +33,7 @@ export async function lookup(
   // EXTERNAL DATE LOGIC BEGIN
   const currentYear: number = new Date().getFullYear();
   let year: number = currentYear - 2;
-  var yearDefault = true;
+  var yearDefault: boolean = true;
 
   if (paperYear && paperYear >= 2011 && paperYear <= currentYear) {
     year = paperYear;
@@ -42,7 +42,7 @@ export async function lookup(
   const examPaperData: string = `[AS${standardNumber}'s exam paper (${year}, PDF)](https://www.nzqa.govt.nz/nqfdocs/ncea-resource/exams/${year}/${standardNumber}-exm-${year}.pdf)`;
   // const answersUrl = `https://www.nzqa.govt.nz/nqfdocs/ncea-resource/exams/${year}/${standard}-ass-${year}.pdf`;
   // todo: potentially add resource booklets, and for all of these URLs run fetch and see if it returns 404 or the pdf
-  let examPaperFieldName;
+  let examPaperFieldName: string;
   if (yearDefault)
     examPaperFieldName = `Examination Paper (defaulting to resources for ${year} as unspecified/invalid)`;
   else
@@ -59,8 +59,8 @@ export async function lookup(
     const cachedJson = (await cachedResponse.json()) as RESTPostAPIInteractionFollowupJSONBody;
 
     // Allows for flexibility regarding external paper year
-    const cachedEmbedFields = cachedJson.embeds![0].fields!;
-    const examPaperIndex = cachedEmbedFields.findIndex(predicate => predicate.name.includes('Examination Paper'));
+    const cachedEmbedFields: APIEmbedField[] = cachedJson.embeds![0].fields!;
+    const examPaperIndex: number = cachedEmbedFields.findIndex(predicate => predicate.name.includes('Examination Paper'));
     if (examPaperIndex !== -1) {
       cachedEmbedFields[examPaperIndex].name = examPaperFieldName;
       cachedEmbedFields[examPaperIndex].value = examPaperData;
@@ -97,7 +97,7 @@ export async function lookup(
 
   const standardDetails: string[] = $('table[class="noHover"] *')
     .contents()
-    .map((index: number, element: AnyNode) =>
+    .map((index: number, element: AnyNode): string =>
       element.type === 'text' ? $(element).text() : ''
     )
     .get()
@@ -119,7 +119,7 @@ export async function lookup(
     .replace(/undefined|-|website|\s\s+/g, ' ')
     .replace(/(\r\n|\n|\r)/gm, '')
     .split(' ')
-    .filter((value: string) => value !== '');
+    .filter((value: string): boolean => value !== '');
 
   if (standardDetails[8] === 'undefined') {
     standardDetails.splice(8, 1);
