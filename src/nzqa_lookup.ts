@@ -35,7 +35,7 @@ export async function lookup(
   let year: number = currentYear - 2;
   var yearDefault: boolean = true;
 
-  if (paperYear && paperYear >= (currentYear - 3) && paperYear <= currentYear) {
+  if (paperYear && paperYear >= currentYear - 3 && paperYear <= currentYear) {
     year = paperYear;
     yearDefault = false;
   }
@@ -45,8 +45,7 @@ export async function lookup(
   let examPaperFieldName: string;
   if (yearDefault)
     examPaperFieldName = `Examination Paper (defaulting to resources for ${year} as unspecified/invalid)`;
-  else
-    examPaperFieldName = `Examination Paper (resources for year ${year})`;
+  else examPaperFieldName = `Examination Paper (resources for year ${year})`;
 
   // EXTERNAL DATE LOGIC END
 
@@ -56,21 +55,20 @@ export async function lookup(
 
   if (cachedResponse) {
     console.log('Cache hit');
-    const cachedJson = (await cachedResponse.json()) as RESTPostAPIInteractionFollowupJSONBody;
+    const cachedJson =
+      (await cachedResponse.json()) as RESTPostAPIInteractionFollowupJSONBody;
 
     // Allows for flexibility regarding external paper year
     const cachedEmbedFields: APIEmbedField[] = cachedJson.embeds![0].fields!;
-    const examPaperIndex: number = cachedEmbedFields.findIndex(predicate => predicate.name.includes('Examination Paper'));
+    const examPaperIndex: number = cachedEmbedFields.findIndex((predicate) =>
+      predicate.name.includes('Examination Paper')
+    );
     if (examPaperIndex !== -1) {
       cachedEmbedFields[examPaperIndex].name = examPaperFieldName;
       cachedEmbedFields[examPaperIndex].value = examPaperData;
     }
     // Use cached response if it exists
-    await follow_up(
-      cachedJson,
-      applicationId,
-      token
-    );
+    await follow_up(cachedJson, applicationId, token);
     return;
   }
 
