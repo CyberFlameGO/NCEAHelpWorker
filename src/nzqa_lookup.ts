@@ -35,7 +35,7 @@ export async function lookup(
   let year: number = currentYear - 2;
   var yearDefault: boolean = true;
 
-  if (paperYear && paperYear >= (paperYear - 3) && paperYear <= currentYear) {
+  if (paperYear && paperYear >= (currentYear - 3) && paperYear <= currentYear) {
     year = paperYear;
     yearDefault = false;
   }
