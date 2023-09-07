@@ -1935,8 +1935,8 @@ packages:
       stoppable: 1.1.0
       undici: 5.23.0
       workerd: 1.20230904.0
-      ws: 8.13.0
-      youch: 3.2.3
+      ws: 8.14.0
+      youch: 3.3.1
       zod: 3.22.2
     transitivePeerDependencies:
       - bufferutil
@@ -2737,8 +2737,8 @@ packages:
     resolution: {integrity: sha512-l4Sp/DRseor9wL6EvV2+TuQn63dMkPjZ/sp9XkghTEbV9KlPS1xUsZ3u7/IQO4wxtcFB4bgpQPRcR3QCvezPcQ==}
     dev: true
 
-  /ws@8.13.0:
-    resolution: {integrity: sha512-x9vcZYTrFPC7aSIbj7sRCYo7L/Xb8Iy+pW0ng0wt2vCJv7M9HOMy0UoN3rr+IFC7hb7vXoqS+P9ktyLLLhO+LA==}
+  /ws@8.14.0:
+    resolution: {integrity: sha512-WR0RJE9Ehsio6U4TuM+LmunEsjQ5ncHlw4sn9ihD6RoJKZrVyH9FWV3dmnwu8B2aNib1OvG2X6adUCyFpQyWcg==}
     engines: {node: '>=10.0.0'}
     peerDependencies:
       bufferutil: ^4.0.1
@@ -2826,8 +2826,8 @@ packages:
     engines: {node: '>=10'}
     dev: true
 
-  /youch@3.2.3:
-    resolution: {integrity: sha512-ZBcWz/uzZaQVdCvfV4uk616Bbpf2ee+F/AvuKDR5EwX/Y4v06xWdtMluqTD7+KlZdM93lLm9gMZYo0sKBS0pgw==}
+  /youch@3.3.1:
+    resolution: {integrity: sha512-Rg9ioi+AkKyje2Hk4qILSVvayaFW98KTsOJ4aIkjDf97LZX5WJVIHZmFLnM4ThcVofHo/fbbwtYajfBPHFOVtg==}
     dependencies:
       cookie: 0.5.0
       mustache: 4.2.0
