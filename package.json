@@ -37,7 +37,7 @@
     "eslint-plugin-prettier": "^5.0.0",
     "mocha": "^10.2.0",
     "ngrok": "5.0.0-beta.2",
-    "pnpm": "^8.7.4",
+    "pnpm": "^8.7.5",
     "prettier": "^3.0.3",
     "sinon": "^15.2.0",
     "typescript": "^5.2.2",
