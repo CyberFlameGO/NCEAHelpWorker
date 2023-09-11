@@ -202,7 +202,7 @@ async function updateMetadata(userId: discordJs.Snowflake, env: Bindings) {
     env.TOKEN_STORE
   )) as storage.Tokens;
 
-  let metadata = {};
+  let metadata;
   try {
     // Fetch the new metadata you want to use from an external source.
     // This data could be POST-ed to this endpoint, but every service
@@ -214,6 +214,7 @@ async function updateMetadata(userId: discordJs.Snowflake, env: Bindings) {
       firstcookiebaked: '2003-12-20',
     };
   } catch (e) {
+    metadata = {};
     console.error(e);
     // If fetching the profile data for the external service fails for any reason,
     // ensure metadata on the Discord side is nulled out. This prevents cases

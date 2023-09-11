@@ -3,7 +3,7 @@
  * and registration.
  */
 
-import { ApplicationCommandOptionType } from "discord-api-types/v10";
+import { ApplicationCommandOptionType } from 'discord-api-types/v10';
 
 export const REVIVE_COMMAND = {
   name: 'revive',
@@ -34,7 +34,8 @@ export const LOOKUP_COMMAND = {
     {
       type: ApplicationCommandOptionType.Integer,
       name: 'exam_year',
-      description: '(If external) Year to link paper for - if unspecified defaults to paper from two years ago.',
-    }
+      description:
+        '(If external) Year to link paper for - if unspecified defaults to paper from two years ago.',
+    },
   ],
 };

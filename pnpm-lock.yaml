@@ -21,8 +21,8 @@ dependencies:
     specifier: ^1.2.0
     version: 1.2.0
   hono:
-    specifier: ^3.5.8
-    version: 3.5.8
+    specifier: ^3.6.0
+    version: 3.6.0
 
 devDependencies:
   '@cloudflare/workers-types':
@@ -53,8 +53,8 @@ devDependencies:
     specifier: 5.0.0-beta.2
     version: 5.0.0-beta.2
   pnpm:
-    specifier: ^8.7.4
-    version: 8.7.4
+    specifier: ^8.7.5
+    version: 8.7.5
   prettier:
     specifier: ^3.0.3
     version: 3.0.3
@@ -949,7 +949,7 @@ packages:
     dev: true
 
   /concat-map@0.0.1:
-    resolution: {integrity: sha512-/Srv4dswyQNBfohGpz9o6Yb3Gz3SrUDqBH5rTuhGR7ahtlbYKnVxw2bCFMRljaA7EXHaXZ8wsHdodFvbkhKmqg==}
+    resolution: {integrity: sha1-2Klr13/Wjfd5OnMDajug1UBdR3s=}
     dev: true
 
   /convert-source-map@1.9.0:
@@ -1582,8 +1582,8 @@ packages:
     hasBin: true
     dev: true
 
-  /hono@3.5.8:
-    resolution: {integrity: sha512-ZipTmGfHm43q5QOEBGog2wyejyNUcicjPt0BLDQ8yz9xij/y9RYXRpR1YPxMpQqeyNM7isvpsIAe9Ems51Wq0Q==}
+  /hono@3.6.0:
+    resolution: {integrity: sha512-snkW8naO1WCrQvpAGE/du30Ek0h71gSM3g4RzzdPIB2LQnl12BEwZYH3s2Kssd6kXGORqHmpoyMBMLWtc9nzKQ==}
     engines: {node: '>=16.0.0'}
     dev: false
 
@@ -2223,8 +2223,8 @@ packages:
     engines: {node: '>=8.6'}
     dev: true
 
-  /pnpm@8.7.4:
-    resolution: {integrity: sha512-/bQ5bXp8l7krhm2QXQVGuPjzNC/Z/p0fK4kw8aIrqG0YthTS9akRKGHiWyaHX623lntCriHBZZPqhbXczqSNVg==}
+  /pnpm@8.7.5:
+    resolution: {integrity: sha512-WI8WZb89Uiq5x2jdz4PcQMG9ovTnXcDCEpoEckPYIT2zD8/+dEhVozPlT7bu3WkBgE0uTARtgyIKAFt+IpW2cQ==}
     engines: {node: '>=16.14'}
     hasBin: true
     dev: true

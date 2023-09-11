@@ -1,7 +1,7 @@
 import * as commands from './commands.js';
 import dotenv from 'dotenv';
 import process from 'node:process';
-import { ApplicationRoleConnectionMetadataType } from 'discord-api-types/v10'
+import { ApplicationRoleConnectionMetadataType } from 'discord-api-types/v10';
 
 /**
  * This file is meant to be run from the command line, and is not used by the
@@ -27,7 +27,6 @@ if (!applicationId) {
  * Register all commands globally.  This can take o(minutes), so wait until
  * you're sure these are the commands you want.
  */
-
 
 async function register(url, body) {
   const response = await fetch(url, {
@@ -85,11 +84,10 @@ const cmds = [
   commands.TEST_COMMAND,
   commands.PING_COMMAND,
   commands.LOOKUP_COMMAND,
-]
+];
 
 const commandEndpoint = `https://discord.com/api/v10/applications/${applicationId}/commands`;
 const metadataEndpoint = `https://discord.com/api/v10/applications/${applicationId}/role-connections/metadata`;
 
-await register(commandEndpoint, cmds)
-await register(metadataEndpoint, metadata)
-
+await register(commandEndpoint, cmds);
+await register(metadataEndpoint, metadata);
