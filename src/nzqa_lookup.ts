@@ -44,8 +44,8 @@ export async function lookup(
   // todo: potentially add resource booklets, and for all of these URLs run fetch and see if it returns 404 or the pdf
   let examPaperFieldName: string;
   if (yearDefault)
-    examPaperFieldName = `Examination Paper (defaulting to resources for ${year} as unspecified/invalid)`;
-  else examPaperFieldName = `Examination Paper (resources for year ${year} - please note that this resource may not implement the achievement standard specification listed above due to being out of date)`;
+    examPaperFieldName = `Examination Paper (defaulting to resources for ${year} as unspecified/invalid - please note that this resource *may* not implement the achievement standard specification listed above due to being out of date)`;
+  else examPaperFieldName = `Examination Paper (resources for year ${year} - please note that this resource *may* not implement the achievement standard specification listed above due to being out of date)`;
 
   // EXTERNAL DATE LOGIC END
 
