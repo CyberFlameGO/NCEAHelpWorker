@@ -54,7 +54,7 @@ export async function lookup(
   const cachedResponse: Response | undefined = await cache.match(cacheKey);
 
   if (cachedResponse) {
-    console.log('Cache hit');
+    console.log('(Cache API) Cache hit');
     const cachedJson =
       (await cachedResponse.json()) as RESTPostAPIInteractionFollowupJSONBody;
 
