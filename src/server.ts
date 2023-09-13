@@ -65,6 +65,8 @@ router.post('/interactions', async (c) => {
 
     case discordJs.InteractionType.ModalSubmit: {
       // The `MODAL_SUBMIT` message is sent when a user submits a modal form.
+      
+      // console.log(JSON.stringify(interaction, null, 2))
       return c.json({
         type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
         data: {
