@@ -22,10 +22,10 @@
   "dependencies": {
     "@types/cheerio": "^0.22.32",
     "cheerio": "1.0.0-rc.12",
-    "discord-api-types": "^0.37.56",
+    "discord-api-types": "^0.37.57",
     "discord-interactions": "^3.4.0",
     "discord-verify": "^1.2.0",
-    "hono": "^3.6.3"
+    "hono": "^3.7.0"
   },
   "devDependencies": {
     "@cloudflare/workers-types": "^4.20230914.0",
@@ -41,6 +41,6 @@
     "prettier": "^3.0.3",
     "sinon": "^16.0.0",
     "typescript": "^5.2.2",
-    "wrangler": "^3.8.0"
+    "wrangler": "^3.9.0"
   }
 }
