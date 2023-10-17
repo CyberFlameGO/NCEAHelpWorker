@@ -21,8 +21,8 @@ dependencies:
     specifier: ^1.2.0
     version: 1.2.0
   hono:
-    specifier: ^3.7.5
-    version: 3.7.5
+    specifier: ^3.8.0
+    version: 3.8.0
 
 devDependencies:
   '@cloudflare/workers-types':
@@ -1518,8 +1518,8 @@ packages:
     hasBin: true
     dev: true
 
-  /hono@3.7.5:
-    resolution: {integrity: sha512-ZaaqAul84HHLXZKwwfH+eMInidwvRj9IdyOoI5Ze0v+WUOAAtQruml3QaUUWkOuI2Myt6IZAiUqkYklLK77k4g==}
+  /hono@3.8.0:
+    resolution: {integrity: sha512-lTkcFzm9abmsYiaX82r707kG7Qo9y/nSuO75VWaI6xRK46yxylMUG10Njy6SS5CcLRAg+0mw8NvPaMPbgV17Gg==}
     engines: {node: '>=16.0.0'}
     dev: false
 
