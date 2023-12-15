@@ -1,6 +1,6 @@
 name = "nceahelpworker"
 main = "./src/server.ts"
-compatibility_date="2023-09-12"
+compatibility_date="2023-12-15"
 
 account_id= "4ed1f8e12cda519236361f09dd8956cf"
 usage_model = "bundled"
