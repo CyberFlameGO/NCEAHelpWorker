@@ -4,7 +4,7 @@ import {
   RESTPostOAuth2RefreshTokenResult,
   Snowflake,
 } from 'discord-api-types/v10';
-import { Bindings } from './server';
+import { Bindings } from './worker-configuration';
 import * as storage from './storage';
 
 export function getOAuthUrl(env: any) {

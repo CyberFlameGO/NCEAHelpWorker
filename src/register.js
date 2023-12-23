@@ -79,12 +79,7 @@ const metadata = [
   },
 ];
 
-const cmds = [
-  commands.REVIVE_COMMAND,
-  commands.TEST_COMMAND,
-  commands.PING_COMMAND,
-  commands.LOOKUP_COMMAND,
-];
+const cmds = Object.values(commands);
 
 const commandEndpoint = `https://discord.com/api/v10/applications/${applicationId}/commands`;
 const metadataEndpoint = `https://discord.com/api/v10/applications/${applicationId}/role-connections/metadata`;
