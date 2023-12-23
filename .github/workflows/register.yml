@@ -25,7 +25,8 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
-      - run: pnpm run register
-        with:
-          DISCORD_TOKEN: ${{ secrets.DISCORD_TOKEN }}
-          DISCORD_APPLICATION_ID: ${{ secrets.DISCORD_APPLICATION_ID }}
+      - name: Run registration
+        run: |
+          export DISCORD_TOKEN=${{ secrets.DISCORD_TOKEN }}
+          export DISCORD_APPLICATION_ID=${{ secrets.DISCORD_APPLICATION_ID }}
+          pnpm run register
