@@ -50,7 +50,7 @@ export async function getOAuthTokens(code: string | undefined, env: Bindings) {
   });
 
   if (response.ok) {
-    const data: RESTPostOAuth2AccessTokenResult = await response.json();
+    const data = await response.json() as RESTPostOAuth2AccessTokenResult;
 
     return data;
   } else {
@@ -83,7 +83,7 @@ export async function getAccessToken(
     });
 
     if (response.ok) {
-      const tokens: RESTPostOAuth2RefreshTokenResult = await response.json();
+      const tokens = await response.json() as RESTPostOAuth2RefreshTokenResult;
 
       tokens.expires_in = Date.now() + tokens.expires_in * 1000;
 
@@ -102,15 +102,15 @@ export async function getAccessToken(
 export async function getUserData(tokens: RESTPostOAuth2AccessTokenResult) {
   const url = 'https://discord.com/api/v10/oauth2/@me';
 
-  const response: Response = await fetch(url, {
+  const response = await fetch(url, {
     headers: {
       Authorization: `Bearer ${tokens.access_token}`,
     },
   });
 
   if (response.ok) {
-    const data: RESTGetAPIOAuth2CurrentAuthorizationResult =
-      await response.json();
+    const data =
+      await response.json() as RESTGetAPIOAuth2CurrentAuthorizationResult;
 
     return data;
   } else {
