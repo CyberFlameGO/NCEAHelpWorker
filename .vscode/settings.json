@@ -12,5 +12,6 @@
         "preinstall",
         "serviceworker",
         "tsbuildinfo"
-    ]
+    ],
+    "typescript.enablePromptUseWorkspaceTsdk": true
 }

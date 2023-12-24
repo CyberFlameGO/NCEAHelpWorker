@@ -8,17 +8,24 @@ import {
 import * as command from '../src/commands.js';
 import sinon from 'sinon';
 import server from '../src/server.js';
+import * as verify from 'discord-verify/.';
 
 const base = 'https://discord.worker.nceahelp.com';
 const applicationId = '1045608895307067453';
 
+interface Body {
+  [x: string]: any;
+  type: number;
+  data: {
+    content: string;
+    flags: number;
+  };
+}
+
 describe('Server', () => {
   describe('GET /', () => {
     it('should return a greeting message with the Discord application ID', async () => {
-      const request = {
-        method: 'GET',
-        url: new URL('/', base),
-      };
+      const request = new Request(new URL('/', base).toString(), { method: 'GET' });
       const env = { DISCORD_APPLICATION_ID: applicationId };
 
       const response = await server.fetch(request, env);
@@ -29,11 +36,9 @@ describe('Server', () => {
   });
 
   describe('POST /interactions', () => {
-    let verifyDiscordRequestStub;
+    let verifyDiscordRequestStub: sinon.SinonStub<any[], any>;
 
-    beforeEach(() => {
-      verifyDiscordRequestStub = sinon.stub(server, 'verifyDiscordRequest');
-    });
+    beforeEach(() => verifyDiscordRequestStub = sinon.stub(verify, 'isValidRequest'));
 
     afterEach(() => {
       verifyDiscordRequestStub.restore();
@@ -44,10 +49,7 @@ describe('Server', () => {
         type: InteractionType.PING,
       };
 
-      const request = {
-        method: 'POST',
-        url: new URL('/interactions', base),
-      };
+      const request = new Request(new URL('/interactions', base).toString(), { method: 'GET' });
 
       const env = {};
 
@@ -57,7 +59,7 @@ describe('Server', () => {
       });
 
       const response = await server.fetch(request, env);
-      const body = await response.json();
+      const body = await response.json() as Body;
       expect(body.type).to.equal(InteractionResponseType.PONG);
     });
 
@@ -129,10 +131,7 @@ describe('Server', () => {
         },
       };
 
-      const request = {
-        method: 'POST',
-        url: new URL('/interactions', base),
-      };
+      const request = new Request(new URL('/interactions', base).toString(), { method: 'GET' });
 
       const env = {
         DISCORD_APPLICATION_ID: applicationId,
@@ -144,7 +143,7 @@ describe('Server', () => {
       });
 
       const response = await server.fetch(request, env);
-      const body = await response.json();
+      const body = await response.json() as Body;
       expect(body.type).to.equal(
         InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE
       );
@@ -160,10 +159,7 @@ describe('Server', () => {
         },
       };
 
-      const request = {
-        method: 'POST',
-        url: new URL('/interactions', base),
-      };
+      const request = new Request(new URL('/interactions', base).toString(), { method: 'GET' });
 
       verifyDiscordRequestStub.resolves({
         isValid: true,
@@ -171,7 +167,7 @@ describe('Server', () => {
       });
 
       const response = await server.fetch(request, {});
-      const body = await response.json();
+      const body = await response.json() as Body;
       expect(response.status).to.equal(400);
       expect(body.error).to.equal('Unknown Type');
     });
@@ -179,10 +175,7 @@ describe('Server', () => {
 
   describe('All other routes', () => {
     it('should return a "Not Found" response', async () => {
-      const request = {
-        method: 'GET',
-        url: new URL('/unknown', base),
-      };
+      const request = new Request(new URL('/interactions', base).toString(), { method: 'GET' });
       const response = await server.fetch(request, {});
       expect(response.status).to.equal(404);
       const body = await response.text();
