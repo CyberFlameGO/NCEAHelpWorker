@@ -62,7 +62,7 @@ router.post('/interactions', async (c) => {
       return c.json({
         type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
         data: {
-          content: 'Thanks for submitting!',
+          content: 'Modal content successfully submitted!',
         },
       });
     }
@@ -115,7 +115,7 @@ router.post('/interactions', async (c) => {
                       style: 1,
                       min_length: 1,
                       max_length: 4000,
-                      placeholder: 'John',
+                      placeholder: 'Bob',
                       required: true,
                     },
                   ],
