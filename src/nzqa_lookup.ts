@@ -50,7 +50,7 @@ export async function lookup(
   // EXTERNAL DATE LOGIC END
 
   const cacheKey: string = new URL(standardUri).toString(); // Use a valid URL for cacheKey
-  const cache: Cache = caches.default;
+  const cache = caches.default;
   const cachedResponse: Response | undefined = await cache.match(cacheKey);
 
   if (cachedResponse) {
@@ -72,7 +72,7 @@ export async function lookup(
     return;
   }
 
-  const response: Response = await fetch(standardUri, {
+  const response = await fetch(standardUri, {
     cf: {
       cacheTtl: 28800, // 8 hours
       cacheEverything: true,
