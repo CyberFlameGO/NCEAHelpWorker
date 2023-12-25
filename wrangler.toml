@@ -13,6 +13,8 @@ kv_namespaces = [
   { binding = "TOKEN_STORE", id = "6054fb4ce09045aea65372b682e4fdbf"}
 ]
 
+tail_consumers = [{service = "nceahelpworker-tail"}]
+
 [placement]
 mode = "smart"
 
