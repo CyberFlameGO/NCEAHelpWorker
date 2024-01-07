@@ -4,9 +4,7 @@ import process from 'node:process';
 import { ApplicationRoleConnectionMetadataType } from 'discord-api-types/v10';
 
 /**
- * This file is meant to be run from the command line, and is not used by the
- * application server.  It's allowed to use node.js primitives, and only needs
- * to be run once.
+ * Registers role connection/command metadata with Discord - runs separately to the bot.
  */
 
 dotenv.config({ path: '.dev.vars' });
@@ -22,11 +20,6 @@ if (!applicationId) {
     'The DISCORD_APPLICATION_ID environment variable is required.'
   );
 }
-
-/**
- * Register all commands globally.  This can take o(minutes), so wait until
- * you're sure these are the commands you want.
- */
 
 async function register(url, body) {
   const response = await fetch(url, {

@@ -1,7 +1,3 @@
-/**
- * The core server that runs on a Cloudflare worker.
- */
-
 import { Hono } from 'hono';
 import { getSignedCookie, setSignedCookie } from 'hono/cookie';
 import {
@@ -26,20 +22,8 @@ router.get('/', (c) => {
   return new Response(`👋 ${c.env.DISCORD_APPLICATION_ID}`);
 });
 
-/**
- * Main route for all requests sent from Discord.  All incoming messages will
- * include a JSON payload described here:
- * https://discord.com/developers/docs/interactions/receiving-and-responding#interaction-object
- */
 // eslint-disable-next-line no-unused-vars
 router.post('/interactions', async (c) => {
-  // const signature = c.req.header('x-signature-ed25519');
-  // const timestamp = c.req.header('x-signature-timestamp');
-  // const body = await c.req.text();
-  // if (!verifyKey(body, signature, timestamp, c.env.DISCORD_PUBLIC_KEY)) {
-  //   console.error('Invalid Request');
-  //   return c.text('Bad request signature.', 401);
-  // }
   const isValid: boolean | void = await isValidRequest(
     c.req.raw,
     c.env.DISCORD_PUBLIC_KEY
