@@ -28,7 +28,7 @@
     "hono": "^3.12.11"
   },
   "devDependencies": {
-    "@cloudflare/workers-types": "^4.20231218.0",
+    "@cloudflare/workers-types": "^4.20240129.0",
     "@types/chai": "^4.3.11",
     "@types/mocha": "^10.0.6",
     "@types/sinon": "^17.0.3",
