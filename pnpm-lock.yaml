@@ -13,7 +13,7 @@ dependencies:
     version: 1.0.0-rc.12
   discord-api-types:
     specifier: ^0.37.70
-    version: 0.37.75
+    version: 0.37.76
   discord-interactions:
     specifier: ^3.4.0
     version: 3.4.0
@@ -955,8 +955,8 @@ packages:
     engines: {node: '>=0.3.1'}
     dev: true
 
-  /discord-api-types@0.37.75:
-    resolution: {integrity: sha512-pnb2iPp63+TqSs+3MCzl47y0CFQYjDDQBmuiCs0LkLoRdFx2dDpjrzJYC7BcHJCa/Xlpf+/JuDT/YADvQLu3yQ==}
+  /discord-api-types@0.37.76:
+    resolution: {integrity: sha512-GQI02JvBVl9+WQiMmyc/OFuJ4bBBf2VWb6NjPBnzrrdF2D/2S07mA1ZCd5+IhHRjU8wQ83c/hmjj9nn1+r/K9g==}
     dev: false
 
   /discord-interactions@3.4.0:
