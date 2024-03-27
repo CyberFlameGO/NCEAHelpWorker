@@ -72,7 +72,7 @@ devDependencies:
     version: 5.4.3
   wrangler:
     specifier: ^3.28.3
-    version: 3.38.0(@cloudflare/workers-types@4.20240320.1)
+    version: 3.39.0(@cloudflare/workers-types@4.20240320.1)
 
 packages:
 
@@ -2114,8 +2114,8 @@ packages:
     resolution: {integrity: sha512-ILEIE97kDZvF9Wb9f6h5aXK4swSlKGUcOEGiIYb2OOu/IrDU9iwj0fD//SsA6E5ibwJxpEvhullJY4Sl4GcpAw==}
     dev: true
 
-  /wrangler@3.38.0(@cloudflare/workers-types@4.20240320.1):
-    resolution: {integrity: sha512-sm6WNKRKax6cC+E2SBGWx3+Wabh047oxZolBwH0AMok+PINs4vsoS8x6ZJ4dk+iIXZQ2RzZLr3gyWSUA44q4Rg==}
+  /wrangler@3.39.0(@cloudflare/workers-types@4.20240320.1):
+    resolution: {integrity: sha512-bcSuZSsC2FCLrdtpFqAu1vV993wG+z3zASbZlPP1iq1VhJyuWeRS3GlObtCrbgRTJIva1T+ZOLCno8kaMSc8Pg==}
     engines: {node: '>=16.17.0'}
     hasBin: true
     peerDependencies:
