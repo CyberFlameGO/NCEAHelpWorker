@@ -70,8 +70,8 @@ importers:
         specifier: ^5.4.5
         version: 5.5.3
       wrangler:
-        specifier: ^3.60.3
-        version: 3.63.1(@cloudflare/workers-types@4.20240620.0)
+        specifier: ^3.63.2
+        version: 3.63.2(@cloudflare/workers-types@4.20240620.0)
 
 packages:
 
@@ -1264,8 +1264,8 @@ packages:
   workerpool@6.5.1:
     resolution: {integrity: sha512-Fs4dNYcsdpYSAfVxhnl1L5zTksjvOJxtC5hzMNl+1t9B8hTJTdKDyZ5ju7ztgPy+ft9tBFXoOlDNiOT9WUXZlA==}
 
-  wrangler@3.63.1:
-    resolution: {integrity: sha512-fxMPNEyDc9pZNtQOuYqRikzv6lL5eP4S1zv7L/kw24uu1cCEmJ39j8bfJGzrAEqKDNsiFXVjEka0RjlpgEVWPg==}
+  wrangler@3.63.2:
+    resolution: {integrity: sha512-c7F46JtBGTIQehTOgfGbxfDMYgO9AjC70CXVSohxHiF9ajHz56HEV2k3aowhJJiP3MBB8sJMm8rdG10f5zUs+w==}
     engines: {node: '>=16.17.0'}
     hasBin: true
     peerDependencies:
@@ -2464,7 +2464,7 @@ snapshots:
 
   workerpool@6.5.1: {}
 
-  wrangler@3.63.1(@cloudflare/workers-types@4.20240620.0):
+  wrangler@3.63.2(@cloudflare/workers-types@4.20240620.0):
     dependencies:
       '@cloudflare/kv-asset-handler': 0.3.4
       '@esbuild-plugins/node-globals-polyfill': 0.2.3(esbuild@0.17.19)
