@@ -34,7 +34,7 @@ jobs:
       contents: read
     strategy:
       matrix:
-        node-version: [20]
+        node-version: [22]
     # needs: [lint]
     environment:
       name: 'production'
