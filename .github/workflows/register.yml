@@ -6,6 +6,7 @@ on:
       - 'main'
     paths:
       - 'src/commands.js'
+  workflow_dispatch:
 jobs:
   lint:
     runs-on: ubuntu-latest
