@@ -25,8 +25,8 @@ importers:
         version: 4.5.5
     devDependencies:
       '@cloudflare/workers-types':
-        specifier: ^4.20240614.0
-        version: 4.20240806.0
+        specifier: ^4.20240815.0
+        version: 4.20240815.0
       '@types/chai':
         specifier: ^4.3.16
         version: 4.3.17
@@ -71,7 +71,7 @@ importers:
         version: 5.5.4
       wrangler:
         specifier: ^3.60.3
-        version: 3.71.0(@cloudflare/workers-types@4.20240806.0)
+        version: 3.71.0(@cloudflare/workers-types@4.20240815.0)
 
 packages:
 
@@ -115,8 +115,8 @@ packages:
   '@cloudflare/workers-shared@0.1.0':
     resolution: {integrity: sha512-SyD4iw6jM4anZaG+ujgVETV4fulF2KHBOW31eavbVN7TNpk2l4aJgwY1YSPK00IKSWsoQuH2TigR446KuT5lqQ==}
 
-  '@cloudflare/workers-types@4.20240806.0':
-    resolution: {integrity: sha512-8lvgrwXGTZEBsUQJ8YUnMk72Anh9omwr6fqWLw/EwVgcw1nQxs/bfdadBEbdP48l9fWXjE4E5XERLUrrFuEpsg==}
+  '@cloudflare/workers-types@4.20240815.0':
+    resolution: {integrity: sha512-H/IXCOahT1lr4RKzsiCkyjM7+LCPLtl2wjxyLG8xMTNERR0XuD1Vcfns6TraE0cd5+IcKe7j3rpzBlSCjZ+61A==}
 
   '@cspotcode/source-map-support@0.8.1':
     resolution: {integrity: sha512-IchNf6dN4tHoMFIn/7OE8LWZ19Y6q/67Bmf6vnGREv8RSbBVb9LPJxEcnwrcwX6ixSvaiGoomAUvu4YSxXrVgw==}
@@ -1392,7 +1392,7 @@ snapshots:
 
   '@cloudflare/workers-shared@0.1.0': {}
 
-  '@cloudflare/workers-types@4.20240806.0': {}
+  '@cloudflare/workers-types@4.20240815.0': {}
 
   '@cspotcode/source-map-support@0.8.1':
     dependencies:
@@ -2528,7 +2528,7 @@ snapshots:
 
   workerpool@6.5.1: {}
 
-  wrangler@3.71.0(@cloudflare/workers-types@4.20240806.0):
+  wrangler@3.71.0(@cloudflare/workers-types@4.20240815.0):
     dependencies:
       '@cloudflare/kv-asset-handler': 0.3.4
       '@cloudflare/workers-shared': 0.1.0
@@ -2549,7 +2549,7 @@ snapshots:
       workerd: 1.20240806.0
       xxhash-wasm: 1.0.2
     optionalDependencies:
-      '@cloudflare/workers-types': 4.20240806.0
+      '@cloudflare/workers-types': 4.20240815.0
       fsevents: 2.3.3
     transitivePeerDependencies:
       - bufferutil
