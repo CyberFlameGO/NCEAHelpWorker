@@ -23,7 +23,7 @@
     "@types/cheerio": "^0.22.35",
     "cheerio": "1.0.0",
     "discord-api-types": "^0.37.89",
-    "discord-interactions": "^4.0.0",
+    "discord-interactions": "^4.1.0",
     "hono": "^4.4.6"
   },
   "devDependencies": {
