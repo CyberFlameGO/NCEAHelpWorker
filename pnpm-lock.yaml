@@ -29,7 +29,7 @@ importers:
         version: 4.20240821.1
       '@types/chai':
         specifier: ^4.3.16
-        version: 4.3.18
+        version: 4.3.19
       '@types/mocha':
         specifier: ^10.0.6
         version: 10.0.7
@@ -362,8 +362,8 @@ packages:
   '@sinonjs/text-encoding@0.7.2':
     resolution: {integrity: sha512-sXXKG+uL9IrKqViTtao2Ws6dy0znu9sOaP1di/jKGW1M6VssO8vlpXCQcpZ+jisQ1tTFAC5Jo/EOzFbggBagFQ==}
 
-  '@types/chai@4.3.18':
-    resolution: {integrity: sha512-2UfJzigyNa8kYTKn7o4hNMPphkxtu4WTJyobK3m4FBpyj7EK5xgtPcOtxLm7Dznk/Qxr0QXn+gQbkg7mCZKdfg==}
+  '@types/chai@4.3.19':
+    resolution: {integrity: sha512-2hHHvQBVE2FiSK4eN0Br6snX9MtolHaTo/batnLjlGRhoQzlCL61iVpxoqO7SfFyOw+P/pwv+0zNHzKoGWz9Cw==}
 
   '@types/cheerio@0.22.35':
     resolution: {integrity: sha512-yD57BchKRvTV+JD53UZ6PD8KWY5g5rvvMLRnZR3EQBCZXiDT/HR+pKpMzFGlWNhFrXlo7VPZXtKvIEwZkAWOIA==}
@@ -1581,7 +1581,7 @@ snapshots:
 
   '@sinonjs/text-encoding@0.7.2': {}
 
-  '@types/chai@4.3.18': {}
+  '@types/chai@4.3.19': {}
 
   '@types/cheerio@0.22.35':
     dependencies:
