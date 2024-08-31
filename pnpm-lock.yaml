@@ -22,7 +22,7 @@ importers:
         version: 4.1.0
       hono:
         specifier: ^4.4.6
-        version: 4.5.9
+        version: 4.5.10
     devDependencies:
       '@cloudflare/workers-types':
         specifier: ^4.20240614.0
@@ -799,8 +799,8 @@ packages:
     resolution: {integrity: sha512-F/1DnUGPopORZi0ni+CvrCgHQ5FyEAHRLSApuYWMmrbSwoN2Mn/7k+Gl38gJnR7yyDZk6WLXwiGod1JOWNDKGw==}
     hasBin: true
 
-  hono@4.5.9:
-    resolution: {integrity: sha512-zz8ktqMDRrZETjxBrv8C5PQRFbrTRCLNVAjD1SNQyOzv4VjmX68Uxw83xQ6oxdAB60HiWnGEatiKA8V3SZLDkQ==}
+  hono@4.5.10:
+    resolution: {integrity: sha512-az6tdU1U8o/l0v8O37FIQuc+ER/TeD9vHt/qs8JnBDgMxw6Zu5L2AixUyHeXZNcu87r7iYo8Ey85R7IogOINKA==}
     engines: {node: '>=16.0.0'}
 
   html-escaper@2.0.2:
@@ -2046,7 +2046,7 @@ snapshots:
 
   he@1.2.0: {}
 
-  hono@4.5.9: {}
+  hono@4.5.10: {}
 
   html-escaper@2.0.2: {}
 
