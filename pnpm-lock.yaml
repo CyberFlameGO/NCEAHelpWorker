@@ -71,7 +71,7 @@ importers:
         version: 5.6.2
       wrangler:
         specifier: ^3.60.3
-        version: 3.78.6(@cloudflare/workers-types@4.20240919.0)
+        version: 3.78.7(@cloudflare/workers-types@4.20240919.0)
 
 packages:
 
@@ -1283,8 +1283,8 @@ packages:
     resolution: {integrity: sha512-HR3W/bMGPSr90i8AAp2C4DM3wChFdJPLrWYpIS++LxS8K+W535qftjt+4MyjNYHeWabMj1nvtmLIi7l++iq91A==}
     engines: {node: '>=18.17'}
 
-  unenv-nightly@2.0.0-1726478054.1e87097:
-    resolution: {integrity: sha512-uZso8dCkGlJzWQqkyjOA5L4aUqNJl9E9oKRm03V/d+URrg6rFMJwBonlX9AAq538NxwJpPnCX0gAz0IfTxsbFQ==}
+  unenv-nightly@2.0.0-20240919-125358-9a64854:
+    resolution: {integrity: sha512-XjsgUTrTHR7iw+k/SRTNjh6EQgwpC9voygnoCJo5kh4hKqsSDHUW84MhL9EsHTNfLctvVBHaSw8e2k3R2fKXsQ==}
 
   uri-js@4.4.1:
     resolution: {integrity: sha512-7rKUyy33Q1yc98pQ1DAmLtwX109F7TIfWlW1Ydo8Wl1ii1SeHieeh0HHfPeL2fMXK6z0s8ecKs9frCuLJvndBg==}
@@ -1318,8 +1318,8 @@ packages:
   workerpool@6.5.1:
     resolution: {integrity: sha512-Fs4dNYcsdpYSAfVxhnl1L5zTksjvOJxtC5hzMNl+1t9B8hTJTdKDyZ5ju7ztgPy+ft9tBFXoOlDNiOT9WUXZlA==}
 
-  wrangler@3.78.6:
-    resolution: {integrity: sha512-1PaN9FB2D5sTlse15adhMIhm33rCJYCPxeN71h/6siW45F0QjDrv+BxInwy9LBg8gfEqm71eI1iIlTGyV3l+1A==}
+  wrangler@3.78.7:
+    resolution: {integrity: sha512-z2ubdgQZ8lh2TEpvihFQOu3HmCNus78sC1LMBiSmgv133i4DeUMuz6SJglles2LayJAKrusjTqFnDYecA2XDDg==}
     engines: {node: '>=16.17.0'}
     hasBin: true
     peerDependencies:
@@ -2523,7 +2523,7 @@ snapshots:
 
   undici@6.19.7: {}
 
-  unenv-nightly@2.0.0-1726478054.1e87097:
+  unenv-nightly@2.0.0-20240919-125358-9a64854:
     dependencies:
       defu: 6.1.4
       ohash: 1.1.4
@@ -2562,7 +2562,7 @@ snapshots:
 
   workerpool@6.5.1: {}
 
-  wrangler@3.78.6(@cloudflare/workers-types@4.20240919.0):
+  wrangler@3.78.7(@cloudflare/workers-types@4.20240919.0):
     dependencies:
       '@cloudflare/kv-asset-handler': 0.3.4
       '@cloudflare/workers-shared': 0.5.3
@@ -2579,7 +2579,7 @@ snapshots:
       resolve.exports: 2.0.2
       selfsigned: 2.4.1
       source-map: 0.6.1
-      unenv: unenv-nightly@2.0.0-1726478054.1e87097
+      unenv: unenv-nightly@2.0.0-20240919-125358-9a64854
       workerd: 1.20240909.0
       xxhash-wasm: 1.0.2
     optionalDependencies:
