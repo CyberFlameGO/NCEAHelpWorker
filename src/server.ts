@@ -240,6 +240,21 @@ router.get('/oauth-callback', async (c) => {
   }
 });
 
+router.post('/webhooks', async (c) => {
+  const signature = c.req.header('x-signature-ed25519')!;
+  const timestamp = c.req.header('x-signature-timestamp')!;
+  const body = await c.req.text();
+  if (!(await verifyKey(body, signature as string, timestamp, c.env.DISCORD_PUBLIC_KEY)))
+   return new Response('Invalid request', { status: 401 });
+  const interaction = await c.req.json();
+
+  switch (interaction["type"]) {
+    case "PING": {
+      return Response(status=204)
+    }
+  }
+}
+
 router.all('*', () => new Response('Not Found.', { status: 404 }));
 
 export default router;
