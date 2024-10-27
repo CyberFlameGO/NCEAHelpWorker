@@ -250,7 +250,7 @@ router.post('/webhooks', async (c) => {
 
   switch (interaction["type"]) {
     case "PING": {
-      return Response(status=204)
+      return new Response({status: 204})
     }
   }
 });
