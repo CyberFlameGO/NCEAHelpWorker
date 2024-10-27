@@ -253,7 +253,7 @@ router.post('/webhooks', async (c) => {
       return Response(status=204)
     }
   }
-}
+});
 
 router.all('*', () => new Response('Not Found.', { status: 404 }));
 
