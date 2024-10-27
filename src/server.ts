@@ -249,19 +249,20 @@ router.post('/webhooks', async (c) => {
   const interaction = await c.req.json();
 
   switch (interaction["type"]) {
-    case 0: 
+    case 0:
       return new Response(null, { status: 204 })
-    
-    case 1: 
+
+    case 1:
       switch (interaction["event"]["type"]) {
-          switch (event.data.integration_type) {
-							case 0: /*Guild Install*/ break;
-							case 1: /*User Install*/ break;
-							// Default case for things like website login
-              }
-              break;
-					case 'ENTITLEMENT_CREATE': break;
-					case 'QUEST_USER_ENROLLMENT': break;
+          case 'APPLICATION_AUTHORIZED':
+            switch (interaction["event"].data.integration_type) {
+              case 0: /*Guild Install*/ break;
+              case 1: /*User Install*/ break;
+              // Default case for things like website login
+            }
+            break;
+          case 'ENTITLEMENT_CREATE': break;
+          case 'QUEST_USER_ENROLLMENT': break;
        }
        return new Response(null, { status: 204 });
      default:
