@@ -1,9 +1,8 @@
 name = "nceahelpworker"
 main = "./src/server.ts"
-compatibility_date="2023-12-15"
+compatibility_date="2024-09-12"
 
 account_id= "4ed1f8e12cda519236361f09dd8956cf"
-usage_model = "bundled"
 send_metrics = true
 minify = true
 
@@ -12,6 +11,8 @@ route = { pattern = "discord.worker.nceahelp.com", zone_name = "nceahelp.com", c
 kv_namespaces = [
   { binding = "TOKEN_STORE", id = "6054fb4ce09045aea65372b682e4fdbf"}
 ]
+
+tail_consumers = [{service = "nceahelpworker-tail"}]
 
 [placement]
 mode = "smart"

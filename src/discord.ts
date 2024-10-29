@@ -17,7 +17,7 @@ export function getOAuthUrl(env: any) {
   url.searchParams.set('state', state);
   url.searchParams.set(
     'scope',
-    'role_connections.write identify guilds connections guilds.members.read email guilds.join'
+    'role_connections.write identify guilds email'
   );
   url.searchParams.set('prompt', 'consent');
 

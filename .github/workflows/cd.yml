@@ -15,7 +15,7 @@ jobs:
   #       node-version: [20]
   #   steps:
   #     - uses: actions/checkout@v3
-  #     - uses: pnpm/action-setup@v2
+  #     - uses: pnpm/action-setup@v4
   #       with:
   #         version: 8
   #     - name: Use Node.js ${{ matrix.node-version }}
@@ -30,18 +30,18 @@ jobs:
   deploy:
     if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     strategy:
       matrix:
-        node-version: [20]
+        node-version: [22]
     # needs: [lint]
     environment:
       name: 'production'
       url: 'https://discord.worker.nceahelp.com/'
     steps:
       - uses: actions/checkout@v4
-      - uses: pnpm/action-setup@v2
-        with:
-          version: 8
+      - uses: pnpm/action-setup@v4
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v4
         with:
@@ -55,3 +55,13 @@ jobs:
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CF_ACCOUNT_ID }}
+
+      - name: Create Sentry release
+        uses: getsentry/action-release@v1
+        env:
+          SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
+          SENTRY_ORG: ${{ secrets.SENTRY_ORG }}
+          SENTRY_PROJECT: ${{ secrets.SENTRY_PROJECT }}
+          # SENTRY_URL: https://sentry.io/
+        with:
+          environment: production

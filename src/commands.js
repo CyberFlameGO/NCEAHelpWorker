@@ -19,11 +19,15 @@ export const TEST_COMMAND = {
 export const PING_COMMAND = {
   name: 'ping',
   description: 'Check latency stats of the bot.',
+  integration_types: [0, 1],
+  contexts: [0, 1, 2],
 };
 
 export const LOOKUP_COMMAND = {
-  description: 'Get detailed information on a standard!',
   name: 'lookup',
+  description: 'Get detailed information on a standard!',
+  integration_types: [0, 1],
+  contexts: [0, 1, 2],
   options: [
     {
       type: ApplicationCommandOptionType.Integer,

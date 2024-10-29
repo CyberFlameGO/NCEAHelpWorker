@@ -1,17 +1,13 @@
-/**
- * The core server that runs on a Cloudflare worker.
- */
-
 import { Hono } from 'hono';
 import { getSignedCookie, setSignedCookie } from 'hono/cookie';
 import {
   InteractionResponseType,
   InteractionResponseFlags,
+  verifyKey,
 } from 'discord-interactions';
 import * as commands from './commands.js';
 import { lookup } from './nzqa_lookup.js';
 import * as discordJs from 'discord-api-types/v10';
-import { isValidRequest } from 'discord-verify';
 import * as storage from './storage.js';
 import * as discord from './discord.js';
 import { Bindings } from './worker-configuration.js';
@@ -26,25 +22,13 @@ router.get('/', (c) => {
   return new Response(`👋 ${c.env.DISCORD_APPLICATION_ID}`);
 });
 
-/**
- * Main route for all requests sent from Discord.  All incoming messages will
- * include a JSON payload described here:
- * https://discord.com/developers/docs/interactions/receiving-and-responding#interaction-object
- */
 // eslint-disable-next-line no-unused-vars
 router.post('/interactions', async (c) => {
-  // const signature = c.req.header('x-signature-ed25519');
-  // const timestamp = c.req.header('x-signature-timestamp');
-  // const body = await c.req.text();
-  // if (!verifyKey(body, signature, timestamp, c.env.DISCORD_PUBLIC_KEY)) {
-  //   console.error('Invalid Request');
-  //   return c.text('Bad request signature.', 401);
-  // }
-  const isValid: boolean | void = await isValidRequest(
-    c.req.raw,
-    c.env.DISCORD_PUBLIC_KEY
-  ).catch(console.error);
-  if (!isValid) return new Response('Invalid request', { status: 401 });
+  const signature = c.req.header('x-signature-ed25519')!;
+  const timestamp = c.req.header('x-signature-timestamp')!;
+  const body = await c.req.text();
+  if (!(await verifyKey(body, signature as string, timestamp, c.env.DISCORD_PUBLIC_KEY)))
+   return new Response('Invalid request', { status: 401 });
   const interaction: discordJs.APIInteraction =
     (await c.req.json()) as discordJs.APIInteraction;
 
@@ -57,7 +41,7 @@ router.post('/interactions', async (c) => {
 
     case discordJs.InteractionType.ModalSubmit: {
       // The `MODAL_SUBMIT` message is sent when a user submits a modal form.
-      
+
       // console.log(JSON.stringify(interaction, null, 2))
       return c.json({
         type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
@@ -253,6 +237,36 @@ router.get('/oauth-callback', async (c) => {
     console.log(e);
 
     return c.text('oh uh, something wrong happened', 500);
+  }
+});
+
+router.post('/webhooks', async (c) => {
+  const signature = c.req.header('x-signature-ed25519')!;
+  const timestamp = c.req.header('x-signature-timestamp')!;
+  const body = await c.req.text();
+  if (!(await verifyKey(body, signature as string, timestamp, c.env.DISCORD_PUBLIC_KEY)))
+   return new Response('Invalid request', { status: 401 });
+  const interaction = await c.req.json();
+
+  switch (interaction["type"]) {
+    case 0:
+      return new Response(null, { status: 204 })
+
+    case 1:
+      switch (interaction["event"]["type"]) {
+          case 'APPLICATION_AUTHORIZED':
+            switch (interaction["event"].data.integration_type) {
+              case 0: /*Guild Install*/ break;
+              case 1: /*User Install*/ break;
+              // Default case for things like website login
+            }
+            break;
+          case 'ENTITLEMENT_CREATE': break;
+          case 'QUEST_USER_ENROLLMENT': break;
+       }
+       return new Response(null, { status: 204 });
+     default:
+				return new Response('invalid request', { status: 400 });
   }
 });
 
