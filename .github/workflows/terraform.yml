@@ -1,0 +1,32 @@
+name: "Terraform Deployment"
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  terraform:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Terraform
+        uses: hashicorp/setup-terraform@v1
+        with:
+          terraform_version: 1.0.0
+
+      - name: Terraform Init
+        run: terraform init
+
+      - name: Terraform Apply
+        run: terraform apply -auto-approve
+
+      - name: Store Terraform State
+        run: |
+          mkdir -p $HOME/.terraform.d/plugin-cache
+          terraform init -backend-config="path=$HOME/.terraform.d/plugin-cache"
