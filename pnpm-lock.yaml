@@ -70,8 +70,8 @@ importers:
         specifier: ^5.6.3
         version: 5.7.2
       wrangler:
-        specifier: ^3.83.0
-        version: 3.95.0(@cloudflare/workers-types@4.20241216.0)
+        specifier: ^3.96.0
+        version: 3.96.0(@cloudflare/workers-types@4.20241216.0)
 
 packages:
 
@@ -112,10 +112,6 @@ packages:
     engines: {node: '>=16'}
     cpu: [x64]
     os: [win32]
-
-  '@cloudflare/workers-shared@0.11.0':
-    resolution: {integrity: sha512-A+lQ8xp7992qSeMmuQ0ssL6CPmm+ZmAv6Ddikan0n1jjpMAic+97l7xtVIsswSn9iLMFPYQ9uNN/8Fl0AgARIQ==}
-    engines: {node: '>=16.7.0'}
 
   '@cloudflare/workers-types@4.20241216.0':
     resolution: {integrity: sha512-PGIINXS+aE9vD2GYyWXfRG+VyxxceRkGDCoPxqwUweh1Bfv75HVotyL/adJ7mRVwh3XZDifGBdTaLReTT+Fcog==}
@@ -1291,8 +1287,8 @@ packages:
   workerpool@6.5.1:
     resolution: {integrity: sha512-Fs4dNYcsdpYSAfVxhnl1L5zTksjvOJxtC5hzMNl+1t9B8hTJTdKDyZ5ju7ztgPy+ft9tBFXoOlDNiOT9WUXZlA==}
 
-  wrangler@3.95.0:
-    resolution: {integrity: sha512-3w5852i3FNyDz421K2Qk4v5L8jjwegO5O8E1+VAQmjnm82HFNxpIRUBq0bmM7CTLvOPI/Jjcmj/eAWjQBL7QYg==}
+  wrangler@3.96.0:
+    resolution: {integrity: sha512-KjbHTUnwTa5eKl3hzv2h6nHBfAsbUkdurL7f6Y288/Bdn6tcEis13jLVR/nw/eWa3tNCBG1xOMZJboUyzWcC1g==}
     engines: {node: '>=16.17.0'}
     hasBin: true
     peerDependencies:
@@ -1380,11 +1376,6 @@ snapshots:
 
   '@cloudflare/workerd-windows-64@1.20241205.0':
     optional: true
-
-  '@cloudflare/workers-shared@0.11.0':
-    dependencies:
-      mime: 3.0.0
-      zod: 3.24.0
 
   '@cloudflare/workers-types@4.20241216.0': {}
 
@@ -2500,10 +2491,9 @@ snapshots:
 
   workerpool@6.5.1: {}
 
-  wrangler@3.95.0(@cloudflare/workers-types@4.20241216.0):
+  wrangler@3.96.0(@cloudflare/workers-types@4.20241216.0):
     dependencies:
       '@cloudflare/kv-asset-handler': 0.3.4
-      '@cloudflare/workers-shared': 0.11.0
       '@esbuild-plugins/node-globals-polyfill': 0.2.3(esbuild@0.17.19)
       '@esbuild-plugins/node-modules-polyfill': 0.2.2(esbuild@0.17.19)
       blake3-wasm: 2.1.5
