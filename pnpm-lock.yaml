@@ -16,7 +16,7 @@ importers:
         version: 1.0.0
       discord-api-types:
         specifier: ^0.37.103
-        version: 0.37.114
+        version: 0.37.115
       discord-interactions:
         specifier: ^4.1.0
         version: 4.1.0
@@ -603,8 +603,8 @@ packages:
     resolution: {integrity: sha512-PJWHUb1RFevKCwaFA9RlG5tCd+FO5iRh9A8HEtkmBH2Li03iJriB6m6JIN4rGz3K3JLawI7/veA1xzRKP6ISBw==}
     engines: {node: '>=0.3.1'}
 
-  discord-api-types@0.37.114:
-    resolution: {integrity: sha512-9b9oOpktWSmE6ooToc46wfw151SHC/+idmnZvtwpEzW85BijUspQxj4W2uOmo+nZVTdEyb3fku58k+4rHKpdSQ==}
+  discord-api-types@0.37.115:
+    resolution: {integrity: sha512-ivPnJotSMrXW8HLjFu+0iCVs8zP6KSliMelhr7HgcB2ki1QzpORkb26m71l1pzSnnGfm7gb5n/VtRTtpw8kXFA==}
 
   discord-interactions@4.1.0:
     resolution: {integrity: sha512-7DyXvsnp9FxjMPD+cPHG3DbttveVgOcWOBtWqyjSQ2bsfkTVpJF2l4c8+XujXaC45NXpRV67Da3go5O2DI0/hw==}
@@ -1808,7 +1808,7 @@ snapshots:
 
   diff@7.0.0: {}
 
-  discord-api-types@0.37.114: {}
+  discord-api-types@0.37.115: {}
 
   discord-interactions@4.1.0: {}
 
