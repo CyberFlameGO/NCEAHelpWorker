@@ -250,7 +250,7 @@ router.post('/webhooks', async (c) => {
 
   switch (interaction["type"]) {
     case 0:
-      return new Response(null, { status: 204 })
+      return new Response(null, { status: 204 });
 
     case 1:
       switch (interaction["event"]["type"]) {
