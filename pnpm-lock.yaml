@@ -19,7 +19,7 @@ importers:
         version: 0.37.119
       discord-interactions:
         specifier: ^4.1.0
-        version: 4.1.0
+        version: 4.1.1
       hono:
         specifier: ^4.6.20
         version: 4.6.20
@@ -581,8 +581,8 @@ packages:
   discord-api-types@0.37.119:
     resolution: {integrity: sha512-WasbGFXEB+VQWXlo6IpW3oUv73Yuau1Ig4AZF/m13tXcTKnMpc/mHjpztIlz4+BM9FG9BHQkEXiPto3bKduQUg==}
 
-  discord-interactions@4.1.0:
-    resolution: {integrity: sha512-7DyXvsnp9FxjMPD+cPHG3DbttveVgOcWOBtWqyjSQ2bsfkTVpJF2l4c8+XujXaC45NXpRV67Da3go5O2DI0/hw==}
+  discord-interactions@4.1.1:
+    resolution: {integrity: sha512-dCrdJFSHQrEHXB8tk+LpIhAL7/+/UXCFDzooYmB6jj7b/zuhdbETpcZXLYQpSfcSRpF5wjmnu1XwuHlvdF1KpQ==}
     engines: {node: '>=18.4.0'}
 
   dom-serializer@2.0.0:
@@ -1708,7 +1708,7 @@ snapshots:
 
   discord-api-types@0.37.119: {}
 
-  discord-interactions@4.1.0: {}
+  discord-interactions@4.1.1: {}
 
   dom-serializer@2.0.0:
     dependencies:
