@@ -20,7 +20,7 @@
   "author": "Aaron Lowe <cyberflameu@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "@types/cheerio": "^0.22.35",
+    "@types/cheerio": "^1.0.0",
     "cheerio": "1.0.0",
     "discord-api-types": "^0.38.0",
     "discord-interactions": "^4.1.0",
