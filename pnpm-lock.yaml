@@ -71,7 +71,7 @@ importers:
         version: 5.8.3
       wrangler:
         specifier: ^3.107.2
-        version: 3.114.10(@cloudflare/workers-types@4.20250709.0)
+        version: 3.114.11(@cloudflare/workers-types@4.20250709.0)
 
 packages:
 
@@ -129,8 +129,8 @@ packages:
     resolution: {integrity: sha512-IchNf6dN4tHoMFIn/7OE8LWZ19Y6q/67Bmf6vnGREv8RSbBVb9LPJxEcnwrcwX6ixSvaiGoomAUvu4YSxXrVgw==}
     engines: {node: '>=12'}
 
-  '@emnapi/runtime@1.4.3':
-    resolution: {integrity: sha512-pBPWdu6MLKROBX05wSNKcNb++m5Er+KQ9QkB+WVM+pW2Kx9hoSrVTnu3BdkI5eBLZoKu/J6mW/B6i6bJB2ytXQ==}
+  '@emnapi/runtime@1.4.4':
+    resolution: {integrity: sha512-hHyapA4A3gPaDCNfiqyZUStTMqIkKRshqPIuDOXv1hcBnD4U3l8cP0T1HMCfGRxQ6V64TGCcoswChANyOAwbQg==}
 
   '@esbuild-plugins/node-globals-polyfill@0.2.3':
     resolution: {integrity: sha512-r3MIryXDeXDOZh7ih1l/yE9ZLORCd5e8vWg02azWRGj5SPTuoh69A2AIyn0Z31V/kHBfZ4HgWJ+OK3GTTwLmnw==}
@@ -1329,8 +1329,8 @@ packages:
   workerpool@9.3.3:
     resolution: {integrity: sha512-slxCaKbYjEdFT/o2rH9xS1hf4uRDch1w7Uo+apxhZ+sf/1d9e0ZVkn42kPNGP2dgjIx6YFvSevj0zHvbWe2jdw==}
 
-  wrangler@3.114.10:
-    resolution: {integrity: sha512-UMs4bSH+P47oXvXqgziRqD8UOT8KBF6D/4O0bB9Kyh9QrT1FGpG2p4rV4FtbKFOchDrXQozbthScND+vLc8gqw==}
+  wrangler@3.114.11:
+    resolution: {integrity: sha512-g0KhNj0AzlDXrW/XNzOrbfjBnDHbmf3a+3+UR67BbKnS8EUC9yTPrKCRymERdFKfiSvlPs34tHGAzOTw62Jb4g==}
     engines: {node: '>=16.17.0'}
     hasBin: true
     peerDependencies:
@@ -1420,7 +1420,7 @@ snapshots:
     dependencies:
       '@jridgewell/trace-mapping': 0.3.9
 
-  '@emnapi/runtime@1.4.3':
+  '@emnapi/runtime@1.4.4':
     dependencies:
       tslib: 2.8.1
     optional: true
@@ -1630,7 +1630,7 @@ snapshots:
 
   '@img/sharp-wasm32@0.33.5':
     dependencies:
-      '@emnapi/runtime': 1.4.3
+      '@emnapi/runtime': 1.4.4
     optional: true
 
   '@img/sharp-win32-ia32@0.33.5':
@@ -2560,7 +2560,7 @@ snapshots:
 
   workerpool@9.3.3: {}
 
-  wrangler@3.114.10(@cloudflare/workers-types@4.20250709.0):
+  wrangler@3.114.11(@cloudflare/workers-types@4.20250709.0):
     dependencies:
       '@cloudflare/kv-asset-handler': 0.3.4
       '@cloudflare/unenv-preset': 2.0.2(unenv@2.0.0-rc.14)(workerd@1.20250408.0)
