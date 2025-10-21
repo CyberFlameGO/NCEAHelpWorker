@@ -29,7 +29,7 @@ importers:
         version: 4.20251014.0
       '@types/chai':
         specifier: ^5.0.1
-        version: 5.2.2
+        version: 5.2.3
       '@types/mocha':
         specifier: ^10.0.10
         version: 10.0.10
@@ -481,8 +481,8 @@ packages:
   '@sinonjs/text-encoding@0.7.3':
     resolution: {integrity: sha512-DE427ROAphMQzU4ENbliGYrBSYPXF+TtLg9S8vzeA+OF4ZKzoDdzfL8sxuMUGS/lgRhM6j1URSk9ghf7Xo1tyA==}
 
-  '@types/chai@5.2.2':
-    resolution: {integrity: sha512-8kB30R7Hwqf40JPiKhVzodJs2Qc1ZJ5zuT3uzw5Hq/dhNCl3G3l83jfpdI1e20BP348+fV7VIL/+FxaXkqBmWg==}
+  '@types/chai@5.2.3':
+    resolution: {integrity: sha512-Mw558oeA9fFbv65/y4mHtXDs9bPnFMZAL/jxdPFUpOHHIXX91mcgEHbS5Lahr+pwZFR8A7GQleRWeI6cGFC2UA==}
 
   '@types/cheerio@0.22.35':
     resolution: {integrity: sha512-yD57BchKRvTV+JD53UZ6PD8KWY5g5rvvMLRnZR3EQBCZXiDT/HR+pKpMzFGlWNhFrXlo7VPZXtKvIEwZkAWOIA==}
@@ -1679,9 +1679,10 @@ snapshots:
 
   '@sinonjs/text-encoding@0.7.3': {}
 
-  '@types/chai@5.2.2':
+  '@types/chai@5.2.3':
     dependencies:
       '@types/deep-eql': 4.0.2
+      assertion-error: 2.0.1
 
   '@types/cheerio@0.22.35':
     dependencies:
