@@ -4,7 +4,7 @@
   "description": "Worker for NCEAHelp Discord server",
   "type": "module",
   "private": true,
-  "packageManager": "pnpm@10.26.0",
+  "packageManager": "pnpm@10.26.1",
   "main": "src/server.js",
   "scripts": {
     "preinstall": "npx only-allow pnpm",
