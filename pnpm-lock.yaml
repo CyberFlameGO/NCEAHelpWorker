@@ -26,7 +26,7 @@ importers:
     devDependencies:
       '@cloudflare/workers-types':
         specifier: ^4.20250121.0
-        version: 4.20260203.0
+        version: 4.20260205.0
       '@types/chai':
         specifier: ^5.0.1
         version: 5.2.3
@@ -71,7 +71,7 @@ importers:
         version: 5.9.3
       wrangler:
         specifier: ^3.107.2
-        version: 3.114.17(@cloudflare/workers-types@4.20260203.0)
+        version: 3.114.17(@cloudflare/workers-types@4.20260205.0)
 
 packages:
 
@@ -122,8 +122,8 @@ packages:
     cpu: [x64]
     os: [win32]
 
-  '@cloudflare/workers-types@4.20260203.0':
-    resolution: {integrity: sha512-XD2uglpGbVppjXXLuAdalKkcTi/i4TyQSx0w/ijJbvrR1Cfm7zNkxtvFBNy3tBNxZOiFIJtw5bszifQB1eow6A==}
+  '@cloudflare/workers-types@4.20260205.0':
+    resolution: {integrity: sha512-LTnpvcodmiuMwxmbrO2Fd0+Avbm2UVLLJxT8J2pRWPfoM44gmbIecXwOPZmDAMeadKWrBsQ+B0sloQAhUu5fpA==}
 
   '@cspotcode/source-map-support@0.8.1':
     resolution: {integrity: sha512-IchNf6dN4tHoMFIn/7OE8LWZ19Y6q/67Bmf6vnGREv8RSbBVb9LPJxEcnwrcwX6ixSvaiGoomAUvu4YSxXrVgw==}
@@ -888,6 +888,7 @@ packages:
 
   glob@10.4.5:
     resolution: {integrity: sha512-7Bv8RF0k6xjo7d4A/PxYLbUCfb6c+Vpd2/mB2yRDlew7Jb5hEXiCD9ibfO7wpk8i4sevK6DFny9h7EYbM3/sHg==}
+    deprecated: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting i@izs.me
     hasBin: true
 
   globals@14.0.0:
@@ -1426,7 +1427,7 @@ snapshots:
   '@cloudflare/workerd-windows-64@1.20250718.0':
     optional: true
 
-  '@cloudflare/workers-types@4.20260203.0': {}
+  '@cloudflare/workers-types@4.20260205.0': {}
 
   '@cspotcode/source-map-support@0.8.1':
     dependencies:
@@ -2575,7 +2576,7 @@ snapshots:
 
   workerpool@9.3.4: {}
 
-  wrangler@3.114.17(@cloudflare/workers-types@4.20260203.0):
+  wrangler@3.114.17(@cloudflare/workers-types@4.20260205.0):
     dependencies:
       '@cloudflare/kv-asset-handler': 0.3.4
       '@cloudflare/unenv-preset': 2.0.2(unenv@2.0.0-rc.14)(workerd@1.20250718.0)
@@ -2588,7 +2589,7 @@ snapshots:
       unenv: 2.0.0-rc.14
       workerd: 1.20250718.0
     optionalDependencies:
-      '@cloudflare/workers-types': 4.20260203.0
+      '@cloudflare/workers-types': 4.20260205.0
       fsevents: 2.3.3
       sharp: 0.33.5
     transitivePeerDependencies:
