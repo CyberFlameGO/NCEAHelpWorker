@@ -22,7 +22,7 @@ importers:
         version: 4.4.0
       hono:
         specifier: ^4.6.20
-        version: 4.11.10
+        version: 4.12.4
     devDependencies:
       '@cloudflare/workers-types':
         specifier: ^4.20250121.0
@@ -492,6 +492,9 @@ packages:
 
   '@sinonjs/text-encoding@0.7.3':
     resolution: {integrity: sha512-DE427ROAphMQzU4ENbliGYrBSYPXF+TtLg9S8vzeA+OF4ZKzoDdzfL8sxuMUGS/lgRhM6j1URSk9ghf7Xo1tyA==}
+    deprecated: |-
+      Deprecated: no longer maintained and no longer used by Sinon packages. See
+        https://github.com/sinonjs/nise/issues/243 for replacement details.
 
   '@types/chai@5.2.3':
     resolution: {integrity: sha512-Mw558oeA9fFbv65/y4mHtXDs9bPnFMZAL/jxdPFUpOHHIXX91mcgEHbS5Lahr+pwZFR8A7GQleRWeI6cGFC2UA==}
@@ -903,8 +906,8 @@ packages:
     resolution: {integrity: sha512-F/1DnUGPopORZi0ni+CvrCgHQ5FyEAHRLSApuYWMmrbSwoN2Mn/7k+Gl38gJnR7yyDZk6WLXwiGod1JOWNDKGw==}
     hasBin: true
 
-  hono@4.11.10:
-    resolution: {integrity: sha512-kyWP5PAiMooEvGrA9jcD3IXF7ATu8+o7B3KCbPXid5se52NPqnOpM/r9qeW2heMnOekF4kqR1fXJqCYeCLKrZg==}
+  hono@4.12.4:
+    resolution: {integrity: sha512-ooiZW1Xy8rQ4oELQ++otI2T9DsKpV0M6c6cO6JGx4RTfav9poFFLlet9UMXHZnoM1yG0HWGlQLswBGX3RZmHtg==}
     engines: {node: '>=16.9.0'}
 
   html-escaper@2.0.2:
@@ -2122,7 +2125,7 @@ snapshots:
 
   he@1.2.0: {}
 
-  hono@4.11.10: {}
+  hono@4.12.4: {}
 
   html-escaper@2.0.2: {}
 
