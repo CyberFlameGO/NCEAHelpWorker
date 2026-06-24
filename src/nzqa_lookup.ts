@@ -1,4 +1,4 @@
-import { CheerioAPI, Cheerio, Element, load, AnyNode } from 'cheerio';
+
 import {
   APIEmbed,
   APIEmbedField,
@@ -85,34 +85,72 @@ export async function lookup(
     await follow_up(followupData, applicationId, token);
     return;
   }
-  const data: string = await response.text();
-  const $: CheerioAPI = load(data); // perhaps look at moving off cheerio to htmlrewriter
+  const h3Texts: string[] = [];
+  let currentH3 = "";
 
-  const h3Elements: Cheerio<Element> = $('div[id="mainPage"] h3');
-  const list: string[] = h3Elements
-    .map((index: number, element: Element) => $(element).text())
-    .get();
+  const standardDetailsRaw: string[] = [];
+  let tableDepth = 0;
 
-  const standardDetails: string[] = $('table[class="noHover"] *')
-    .contents()
-    .map((index: number, element: AnyNode): string =>
-      element.type === 'text' ? $(element).text() : ''
-    )
-    .get()
+  const standardFileRaw: string[] = [];
+  let trDepth = 0;
+
+  const rewriter = new HTMLRewriter()
+    .on('div[id="mainPage"] h3', {
+      element(element) {
+        currentH3 = "";
+        element.onEndTag(() => {
+          const trimmed = currentH3.trim();
+          if (trimmed) h3Texts.push(trimmed);
+        });
+      },
+      text(text) {
+        currentH3 += text.text;
+      }
+    })
+    .on('table[class="noHover"]', {
+      element(element) {
+        tableDepth++;
+        element.onEndTag(() => {
+          tableDepth--;
+        });
+      },
+      text(text) {
+        if (tableDepth > 0) {
+          if (text.text.trim()) {
+            standardDetailsRaw.push(text.text);
+          }
+        }
+      }
+    })
+    .on('#mainPage > table.tableData.noHover tr:nth-child(2)', {
+      element(element) {
+        trDepth++;
+        element.onEndTag(() => {
+          trDepth--;
+        });
+      },
+      text(text) {
+        if (trDepth > 0) {
+          if (text.text.trim()) {
+            standardFileRaw.push(text.text);
+          }
+        }
+      }
+    });
+
+  const transformedResponse = rewriter.transform(response);
+  await transformedResponse.arrayBuffer(); // Consume the stream
+
+  const list: string[] = h3Texts;
+
+  const standardDetails: string[] = standardDetailsRaw
     .join(' ')
     .replace(/undefined|-|website|\s\s+/g, ' ')
     .replace(/(\r\n|\n|\r)/gm, '')
     .split(' ')
     .filter((value: string) => value !== '');
 
-  const standardFile: string[] = $(
-    '#mainPage > table.tableData.noHover > tbody > tr:nth-child(2) *'
-  )
-    .contents()
-    .map((index: number, element: AnyNode) =>
-      element.type === 'text' ? $(element).text() : ''
-    )
-    .get()
+  const standardFile: string[] = standardFileRaw
     .join(' ')
     .replace(/undefined|-|website|\s\s+/g, ' ')
     .replace(/(\r\n|\n|\r)/gm, '')
