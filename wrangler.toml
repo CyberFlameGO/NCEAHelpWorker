@@ -1,6 +1,6 @@
 name = "nceahelpworker"
 main = "./src/server.ts"
-compatibility_date="2025-01-23"
+compatibility_date="2026-09-27"
 
 account_id= "4ed1f8e12cda519236361f09dd8956cf"
 send_metrics = true
@@ -12,7 +12,9 @@ kv_namespaces = [
   { binding = "TOKEN_STORE", id = "6054fb4ce09045aea65372b682e4fdbf"}
 ]
 
-tail_consumers = [{service = "nceahelpworker-tail"}]
+# tail_consumers = [{service = "nceahelpworker-tail"}]
+[cache]
+enabled = true
 
 [placement]
 mode = "smart"
